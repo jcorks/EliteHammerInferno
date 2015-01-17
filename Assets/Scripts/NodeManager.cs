@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class NodeManager : MonoBehaviour {
-	public int nodeSpread; 		// Total range of the map
+	public float nodeSpread; 		// Total range of the map
 	public int tryCount;		// Number of nodes to try to make. May vary from actual nodes 
-	public int minTolerance;	// Minimum distance allowable for a node connection
-	public int maxTolerance;	// Maximum distance allowable for a node connection
+	public float minTolerance;	// Minimum distance allowable for a node connection
+	public float maxTolerance;	// Maximum distance allowable for a node connection
 	public int maxNeighbors;	// maximum number of neighbors
 	public float minimumNodeProximity;
 
@@ -65,6 +65,20 @@ public class NodeManager : MonoBehaviour {
 
 
 		}
+
+
+		// Finally determine the node gain amounts
+		Vector3 origin = new Vector3 (0.0f, 0.0f, 0.0f);
+		for (int i = 0; i < nodeObjs.Count; ++i) {
+
+			// Determined by roximity to the origin
+			int dist = (int)(Vector3.Distance (nodeObjs[i].transform.position, origin));
+			
+			nodeObjs[i].GetComponent<Node>().
+				setResourceGain((int)(nodeSpread/2.0 - dist)); 
+		}
+
+		print (nodeObjs.Count);
 
 
 

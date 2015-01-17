@@ -10,12 +10,16 @@ public enum Player {
 };
 
 
+
 public class PlayerData : MonoBehaviour {
 
+	static public int[] Resources = new int[5];
+	
 
 	// Use this for initialization
 	void Start () {
-	
+		for(int i = 0; i < 5; ++i) 
+			Resources[i] = 0;
 	}
 	
 	// Update is called once per frame
