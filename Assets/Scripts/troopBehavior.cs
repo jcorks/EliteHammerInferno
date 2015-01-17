@@ -11,14 +11,14 @@ public class troopBehavior : MonoBehaviour {
 	public float strength = 0f;
 
 	public float morale = 0f;
+	
+	public troopBehavior opponent;
+	
+	public bool fighting = false;
 
 	float priorSpeed = 1f;
 
 	float fightInterval = 0;
-
-	public troopBehavior opponent;
-
-	bool fighting = false;
 
 	void makeProperty(float mobilized, float mobilizedMorale) {
 		Debug.Log ("mobilized");
@@ -65,13 +65,16 @@ public class troopBehavior : MonoBehaviour {
 		Debug.Log (coll.gameObject);
 		//Find out what hit this basket
 		GameObject collidedWith = coll.gameObject;
-		Player clash = collidedWith.GetComponent<troopBehavior> ().troopOwner;
-		if (clash != troopOwner) {
-				fighting = true;
-				opponent = collidedWith.GetComponent<troopBehavior>();
-				Debug.Log ("clash!");
-				priorSpeed = speed;
-				speed = 0;
-			}
+		troopBehavior clash = collidedWith.GetComponent<troopBehavior>();
+		if (clash.troopOwner != troopOwner) {
+			fighting = true;
+			opponent = collidedWith.GetComponent<troopBehavior>();
+			Debug.Log ("clash!");
+			priorSpeed = speed;
+			speed = 0;
+		}
+		if (clash.troopOwner == troopOwner && clash.fighting /*and heading towards same vector*/) {
+			clash
+		}
 	}
 }
