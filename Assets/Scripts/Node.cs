@@ -53,7 +53,12 @@ public class Node : MonoBehaviour {
 	// Neighbors can move units to other neighbors.
 	public void connectNode(Node n) {
 		if (!n || n.GetInstanceID () == GetInstanceID ()) return;
+		foreach (Node i in neighbors) {
+			// return if already connected
+			if (i.GetInstanceID () == n.GetInstanceID ()) return;
+		}
 		neighbors.Add (n);
+		n.neighbors.Add(this);
 	}
 
 	// Removes a neighbor
