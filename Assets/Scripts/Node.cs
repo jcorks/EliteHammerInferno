@@ -14,6 +14,7 @@ public class Node : MonoBehaviour {
 	public int playerOwner;
 
 	static public int troopCost = 5;
+	public GameObject pathObj;
 
 
 	/* Unit Management */
@@ -45,6 +46,10 @@ public class Node : MonoBehaviour {
 		}
 		neighbors.Add (n);
 		n.neighbors.Add(this);
+
+		GameObject path = (GameObject)Instantiate (pathObj);
+		Pathway newPath = path.GetComponent<Pathway> ();
+		newPath.setPath (transform.position, n.transform.position);
 	}
 
 	// Removes a neighbor
