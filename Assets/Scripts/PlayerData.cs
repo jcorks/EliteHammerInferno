@@ -14,7 +14,55 @@ public enum Player {
 public class PlayerData : MonoBehaviour {
 
 	static public int[] Resources = new int[5];
+
+	static public bool[] confirmInput = new bool[5];
+	static public bool[] backInput = new bool[5];
+	static public bool[] upInput = new bool[5];
+	static public bool[] downInput = new bool[5];
+	static public bool[] leftInput = new bool[5];
+	static public bool[] rightInput = new bool[5];
+
+
+
+
+	static public bool inputConfirm(Player p) {
+		// replace with proper player's input
+		return (Input.GetKeyDown (KeyCode.Z));
+	}
+
 	
+	static public bool inputBack(Player p) {
+		// replace with proper player's input
+		return (Input.GetKeyDown (KeyCode.X));
+	}
+
+	
+	static public bool inputUp(Player p) {
+		// replace with proper player's input
+		return (Input.GetKeyDown (KeyCode.UpArrow));
+	}
+
+	
+	static public bool inputDown(Player p) {
+		// replace with proper player's input
+		return (Input.GetKeyDown (KeyCode.DownArrow));
+	}
+	
+	static public bool inputLeft(Player p) {
+		// replace with proper player's input
+		return (Input.GetKeyDown (KeyCode.LeftArrow));
+	}
+
+	
+	static public bool inputRight(Player p) {
+		// replace with proper player's input
+		return (Input.GetKeyDown (KeyCode.RightArrow));
+	}
+
+
+
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -27,3 +75,5 @@ public class PlayerData : MonoBehaviour {
 	
 	}
 }
+
+

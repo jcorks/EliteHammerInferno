@@ -74,7 +74,7 @@ public class troopBehavior : MonoBehaviour {
 			speed = 0;
 		}
 		if (clash.troopOwner == troopOwner && clash.fighting /*and heading towards same vector*/) {
-			clash
+
 		}
 	}
 }

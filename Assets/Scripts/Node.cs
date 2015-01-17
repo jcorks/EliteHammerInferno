@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Node : MonoBehaviour {
-	private int numUnits = 0;
+
+	private troopBehavior troop;
 	private List<Node> neighbors;
 	private int resCount = 0;
 	private int resourceGain = 0; // mad gains
@@ -16,32 +17,17 @@ public class Node : MonoBehaviour {
 
 
 	/* Unit Management */
-
-	// Adds a number of units to this node
-	// Useful for troops
-	public void addUnits(int num) {
-		numUnits += num;
-	}
-
-	// Removes a specific number of nodes
-	public void remUnits(int num) {
-		numUnits -= num;
-		if (numUnits < 0) numUnits = 0;
-	}
-
+	
 	// Produces units locally by spending resources from the pool
 	public void buildUnits (int numNewUnits) {
 		for (int i = 0; i < numNewUnits; ++i) {
 			if (PlayerData.Resources[playerOwner] < troopCost) return;
 			PlayerData.Resources[playerOwner] -= troopCost;
-			numUnits++;
+			troop.strength++;
 		}
 	}
 
-	// Gets the current count of units
-	public int unitCount() {
-		return numUnits;
-	}
+
 
 
 
