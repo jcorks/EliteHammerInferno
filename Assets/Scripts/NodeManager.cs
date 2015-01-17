@@ -14,15 +14,18 @@ public class NodeManager : MonoBehaviour {
 
 
 	public GameObject NodeObject;
+	public GameObject NodeCursorObj;
 
-
-
-	public GameObject[] playerCursors = new GameObject[5];
+	private GameObject[] playerCursors = new GameObject[5];
 
 
 
 	void Awake() {
 		generateNodes ();
+		for (int i = 0; i < 1; ++i) {
+			playerCursors[i] = (GameObject)Instantiate (NodeCursorObj);
+			playerCursors[i].GetComponent<NodeCursor>().setNode(nodeObjs[i].GetComponent<Node>());
+		}
 	}
 
 
@@ -38,7 +41,7 @@ public class NodeManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		processPlayer (Player.PLAYER_1);
-		processPlayer (Player.PLAYER_2);
+		//processPlayer (Player.PLAYER_2);
 		//processPlayer (Player.PLAYER_3);
 		//processPlayer (Player.PLAYER_4);
 	}
@@ -46,6 +49,22 @@ public class NodeManager : MonoBehaviour {
 
 
 	void processPlayer(Player p) {
+		if (PlayerData.inputUp(p)) {
+			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.UP);
+		}
+
+		if (PlayerData.inputDown(p)) {
+			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.DOWN);
+		}
+
+
+		if (PlayerData.inputLeft(p)) {
+			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.LEFT);
+		}
+
+		if (PlayerData.inputRight(p)) {
+			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.RIGHT);
+		}
 
 	}
 

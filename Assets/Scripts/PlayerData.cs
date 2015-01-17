@@ -27,7 +27,7 @@ public class PlayerData : MonoBehaviour {
 
 	static public bool inputConfirm(Player p) {
 		// replace with proper player's input
-		return (Input.GetKeyDown (KeyCode.Z));
+		return (Input.GetKey (KeyCode.Z));
 	}
 
 	
@@ -39,24 +39,35 @@ public class PlayerData : MonoBehaviour {
 	
 	static public bool inputUp(Player p) {
 		// replace with proper player's input
-		return (Input.GetKeyDown (KeyCode.UpArrow));
+		if (p == Player.PLAYER_1)
+			return (Input.GetKeyDown (KeyCode.UpArrow));
+
+		return false;
 	}
 
 	
 	static public bool inputDown(Player p) {
 		// replace with proper player's input
-		return (Input.GetKeyDown (KeyCode.DownArrow));
+		if (p == Player.PLAYER_1)
+			return (Input.GetKeyDown(KeyCode.DownArrow));
+
+		return false;
 	}
 	
 	static public bool inputLeft(Player p) {
 		// replace with proper player's input
-		return (Input.GetKeyDown (KeyCode.LeftArrow));
+		if (p == Player.PLAYER_1)
+			return (Input.GetKeyDown (KeyCode.LeftArrow));
+		return false;
 	}
 
 	
 	static public bool inputRight(Player p) {
 		// replace with proper player's input
-		return (Input.GetKeyDown (KeyCode.RightArrow));
+		if (p == Player.PLAYER_1)
+			return (Input.GetKeyDown (KeyCode.RightArrow));
+
+		return false;
 	}
 
 

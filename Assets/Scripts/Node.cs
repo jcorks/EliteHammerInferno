@@ -100,7 +100,7 @@ public class Node : MonoBehaviour {
 
 		// Test. draws a line between neighboring nodes
 		foreach (Node n in neighbors) {
-			Debug.DrawLine (transform.position, n.transform.position, new Color(255, 0, 0, 255), 1);
+			Debug.DrawLine (transform.position, n.transform.position, new Color(255, 0, 0, 35), 1);
 		}
 	}
 
