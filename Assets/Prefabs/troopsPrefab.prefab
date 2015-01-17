@@ -11,8 +11,8 @@ GameObject:
   - 33: {fileID: 3385228}
   - 65: {fileID: 6585228}
   - 23: {fileID: 2385228}
-  - 54: {fileID: 5402204}
   - 114: {fileID: 11432320}
+  - 54: {fileID: 5459658}
   m_Layer: 0
   m_Name: troopsPrefab
   m_TagString: troop
@@ -40,7 +40,7 @@ Renderer:
   m_GameObject: {fileID: 185228}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
@@ -59,7 +59,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185228}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &5402204
+--- !u!54 &5459658
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -81,7 +81,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185228}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
