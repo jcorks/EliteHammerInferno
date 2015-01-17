@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum Player {
 	PLAYER_1,
@@ -13,6 +14,122 @@ public enum Player {
 
 public class PlayerData : MonoBehaviour {
 
+    public static List<PlayerData> players;
+
+    public static void init(int initcount)
+    {
+        players = new List<PlayerData>();
+
+        // initialize all 4 controllers
+        players.Add(new PlayerData()
+        {
+            Resources = 0,
+            TotalResources = 0,
+            Horizontal = "Horizontal1",
+            Vertical = "Vertical1",
+            AltHorizontal = "AltHorizontal1",
+            AltVertical = "AltVertical1",
+            MoveArmy = "MoveArmy1",
+            BuildArmy = "BuildArmy1",
+            Power = "Power1"
+        });
+        players.Add(new PlayerData()
+        {
+            Resources = 0,
+            TotalResources = 0,
+            Horizontal = "Horizontal2",
+            Vertical = "Vertical2",
+            AltHorizontal = "AltHorizontal2",
+            AltVertical = "AltVertical2",
+            MoveArmy = "MoveArmy2",
+            BuildArmy = "BuildArmy2",
+            Power = "Power2"
+        });
+        players.Add(new PlayerData()
+        {
+            Resources = 0,
+            TotalResources = 0,
+            Horizontal = "Horizontal3",
+            Vertical = "Vertical1",
+            AltHorizontal = "AltHorizontal3",
+            AltVertical = "AltVertical3",
+            MoveArmy = "MoveArmy3",
+            BuildArmy = "BuildArmy3",
+            Power = "Power3"
+        });
+        players.Add(new PlayerData()
+        {
+            Resources = 0,
+            TotalResources = 0,
+            Horizontal = "Horizontal4",
+            Vertical = "Vertical4",
+            AltHorizontal = "AltHorizontal4",
+            AltVertical = "AltVertical4",
+            MoveArmy = "MoveArmy4",
+            BuildArmy = "BuildArmy4",
+            Power = "Power4"
+        });
+    }
+
+    // Processing controls returns bool if pressed/active
+    // Usage: if( PlayerData.players[i].left() )
+    public bool left()
+    {
+        return (Input.GetAxis(Horizontal) < 0 || Input.GetAxis(AltHorizontal) < 0);
+    }
+
+    public bool right()
+    {
+        return (Input.GetAxis(Horizontal) > 0 || Input.GetAxis(AltHorizontal) > 0);
+    }
+
+    public bool up()
+    {
+        return (Input.GetAxis(Vertical) > 0 || Input.GetAxis(AltVertical) > 0);
+    }
+
+    public bool down()
+    {
+        return (Input.GetAxis(Vertical) < 0 || Input.GetAxis(AltVertical) < 0);
+    }
+
+    public bool move()
+    {
+        return (Input.GetButton(MoveArmy));
+    }
+
+    public bool build()
+    {
+        return (Input.GetButton(BuildArmy));
+    }
+
+    public bool ability()
+    {
+        return (Input.GetButton(Power));
+    }
+
+    public void addTotal(int add)
+    {
+        TotalResources += add;
+    }
+
+    public int total()
+    {
+        return TotalResources;
+    }
+
+    //Variables
+    public int Resources;
+    private int TotalResources;
+    private string Horizontal;
+    private string Vertical;
+    private string AltHorizontal;
+    private string AltVertical;
+    private string MoveArmy;
+    private string BuildArmy;
+    private string Power;
+
+/*
 	static public int[] Resources = new int[5];
 
 	static public bool[] confirmInput = new bool[5];
@@ -69,13 +186,8 @@ public class PlayerData : MonoBehaviour {
 
 		return false;
 	}
-
-
-
-
-
-
-	// Use this for initialization
+    
+   	// Use this for initialization
 	void Start () {
 		for(int i = 0; i < 5; ++i) 
 			Resources[i] = 0;
@@ -85,6 +197,8 @@ public class PlayerData : MonoBehaviour {
 	void Update () {
 	
 	}
+ */
+
 }
 
 
