@@ -8,13 +8,15 @@ public class troopBehavior : MonoBehaviour {
 
 	public Player troopOwner;
 
-	public float strength = 0f;
+	public float strength;
 
-	public float morale = 0f;
+	public float morale;
 	
 	public troopBehavior opponent;
 	
 	public bool fighting = false;
+	
+	float baseAttack = 5f;
 
 	float priorSpeed = 1f;
 
@@ -39,26 +41,37 @@ public class troopBehavior : MonoBehaviour {
 		pos.x += speed * Time.deltaTime;
 		transform.position = pos;
 		if (fightInterval == 50) {
-			if (fighting == true) {
-				Debug.Log("morale:" + morale);
-				Debug.Log("strength:" + strength);
-				strength = Mathf.Round (strength - opponent.strength*0.1f - morale*0.05f);
-				morale = Mathf.Round (morale - opponent.strength*0.15f - morale*0.05f);
-				if (strength < 0) {
-					Destroy (this.gameObject); //Unit destroyed
-				}
-				else if (morale < 0) {
-					speed = priorSpeed*-2; // withdraw if morale is low
-					fighting = false;
-				}
-				if (opponent.morale < 0 || opponent.strength < 0) {
-					fighting = false;
-					speed = priorSpeed;
-				}
+			if (fighting == true && troopOwner == Player.PLAYER_1) {
+				float attack1 = Mathf.Round (opponent.strength*0.1f*Random.Range(0.8f, 1f) - opponent.morale*0.05f * Random.Range(0.8f, 1f));
+				float shock1 = Mathf.Round (opponent.strength*0.075f*Random.Range(0.8f, 1f) - opponent.morale*0.025f*Random.Range(0.8f, 1f));
+				float attack2 = Mathf.Round (strength*0.1f*Random.Range(0.8f, 1f) - morale*0.05f * Random.Range(0.8f, 1f));
+				float shock2 = Mathf.Round (strength*0.075f*Random.Range(0.8f, 1f) - morale*0.025f*Random.Range(0.8f, 1f));
+				strength -= attack1;
+				morale -= shock1;
+				opponent.strength -= attack2;
+				opponent.morale -= shock2;
+				Debug.Log("attack:" + attack1 + " shock:" + shock1);
+				Debug.Log("morale:" + morale + " morale2:" + opponent.morale);
+				Debug.Log("strength:" + strength + " strength2:" + opponent.strength); 
 			}
-
 			fightInterval = 0;
 		}
+
+		if (fighting) {
+			if (strength < 0) {
+				Destroy (this.gameObject); //Unit destroyed
+			}
+			if (morale < 0) {
+				speed = priorSpeed*-2; // withdraw if morale is low
+				fighting = false;
+			}
+			if (opponent.morale < 0 || opponent.strength < 0) {
+				fighting = false;
+				speed = priorSpeed;
+				morale = morale + 30 % 100;
+			}
+		}
+
 	}	
 
 	void OnTriggerEnter(Collider coll){
@@ -68,13 +81,18 @@ public class troopBehavior : MonoBehaviour {
 		troopBehavior clash = collidedWith.GetComponent<troopBehavior>();
 		if (clash.troopOwner != troopOwner) {
 			fighting = true;
-			opponent = collidedWith.GetComponent<troopBehavior>();
+			opponent = clash;
 			Debug.Log ("clash!");
 			priorSpeed = speed;
 			speed = 0;
 		}
 		if (clash.troopOwner == troopOwner && clash.fighting /*and heading towards same vector*/) {
-
+			Debug.Log ("merge!");
+			clash.morale = Mathf.Round((morale*strength + clash.morale*clash.strength)/(clash.strength+strength));
+			clash.strength += strength;
+			Debug.Log (clash.strength);
+			Debug.Log (clash.morale);
+			Destroy (this.gameObject);
 		}
 	}
 }
