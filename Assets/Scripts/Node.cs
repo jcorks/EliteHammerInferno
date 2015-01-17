@@ -55,12 +55,15 @@ public class Node : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		neighbors = new List<Node> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+		foreach (Node n in neighbors) {
+			Debug.DrawLine (transform.position, n.transform.position, new Color(255, 0, 0, 255), 1);
+		}
 	}
 }
