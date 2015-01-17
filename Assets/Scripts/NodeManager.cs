@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class NodeManager : MonoBehaviour {
-	public float nodeSpread; 		// Total range of the map
-	public int tryCount;		// Number of nodes to try to make. May vary from actual nodes 
-	public float minTolerance;	// Minimum distance allowable for a node connection
-	public float maxTolerance;	// Maximum distance allowable for a node connection
-	public int maxNeighbors;	// maximum number of neighbors
-	public float minimumNodeProximity;
+	private float nodeSpread			=8.7f; 		// Total range of the map
+	private int tryCount				=1000;		// Number of nodes to try to make. May vary from actual nodes 
+	private float minTolerance			=1.0f;		// Minimum distance allowable for a node connection
+	private float maxTolerance			=2.4f;		// Maximum distance allowable for a node connection
+	private int maxNeighbors			=4;			// maximum number of neighbors
+	private float minimumNodeProximity = 1.5f;	
 
 	private static List<GameObject> nodeObjs; 
 
