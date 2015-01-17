@@ -30,8 +30,8 @@ public class Node : MonoBehaviour {
 			troop.speed = 0;
 		}
 		for (int i = 0; i < numNewUnits; ++i) {
-			if (PlayerData.Resources[playerOwner] < troopCost) return;
-			PlayerData.Resources[playerOwner] -= troopCost;
+			if (Hammer.PlayerData.players[playerOwner].Resources < troopCost) return;
+			Hammer.PlayerData.players[playerOwner].Resources -= troopCost;
 			troop.morale = (troop.morale*troop.strength + 100)/(troop.strength+1);
 			troop.strength++;
 			Debug.Log ("unit produced");
@@ -120,10 +120,12 @@ public class Node : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-
+		if (playerOwner == (int)Player.AI)
+						return;
 		// gain Resources for the owner player
 		if (resCount>100) {
-			PlayerData.Resources[playerOwner] += resourceGain;
+			Hammer.PlayerData.players[playerOwner].Resources += resourceGain;
+			Hammer.PlayerData.players[playerOwner].addTotal (resourceGain);
 			resCount = 0;
 		}
 		resCount++;
