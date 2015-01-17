@@ -16,7 +16,7 @@ public class PlayerData : MonoBehaviour {
 
     public static List<PlayerData> players;
 
-    public static void init(int initcount)
+    public static void init()
     {
         players = new List<PlayerData>();
 
