@@ -6,6 +6,8 @@ public class troopBehavior : MonoBehaviour {
 
 	public float speed;
 
+	public Player troopOwner;
+
 	public float strength = 0f;
 
 	public float morale = 0f;
@@ -26,7 +28,7 @@ public class troopBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		makeProperty (100f, 100f);
+		//makeProperty (1000f, 1000f);
 	}
 	
 	// Update is called once per frame
@@ -49,7 +51,7 @@ public class troopBehavior : MonoBehaviour {
 					speed = priorSpeed*-2; // withdraw if morale is low
 					fighting = false;
 				}
-				if (opponent.morale < 0) {
+				if (opponent.morale < 0 || opponent.strength < 0) {
 					fighting = false;
 					speed = priorSpeed;
 				}
@@ -57,18 +59,14 @@ public class troopBehavior : MonoBehaviour {
 
 			fightInterval = 0;
 		}
-		//if (strength == 0)
-			//speed = -2 * priorSpeed;
-			//Destroy (this);
-		//if (morale < 0) 
-			//speed = -2*priorSpeed;
 	}	
 
 	void OnTriggerEnter(Collider coll){
 		Debug.Log (coll.gameObject);
 		//Find out what hit this basket
-			GameObject collidedWith = coll.gameObject;
-			if (collidedWith.tag == "troop") {
+		GameObject collidedWith = coll.gameObject;
+		Player clash = collidedWith.GetComponent<troopBehavior> ().troopOwner;
+		if (clash != troopOwner) {
 				fighting = true;
 				opponent = collidedWith.GetComponent<troopBehavior>();
 				Debug.Log ("clash!");
