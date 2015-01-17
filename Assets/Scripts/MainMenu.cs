@@ -3,9 +3,6 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
-    private Animator _animator;
-    private CanvasGroup _canvasgroup;
-
     public void buttonsound()
     {
         audio.Play();
@@ -15,5 +12,4 @@ public class MainMenu : MonoBehaviour {
     {
         Application.Quit();
     }
-
 }
