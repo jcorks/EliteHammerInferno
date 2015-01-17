@@ -21,11 +21,14 @@ public class NodeManager : MonoBehaviour {
 
 
 	void Awake() {
+		Hammer.PlayerData.init ();
 		generateNodes ();
 		for (int i = 0; i < 1; ++i) {
 			playerCursors[i] = (GameObject)Instantiate (NodeCursorObj);
 			playerCursors[i].GetComponent<NodeCursor>().setNode(nodeObjs[i].GetComponent<Node>());
 		}
+
+
 	}
 
 
@@ -49,20 +52,20 @@ public class NodeManager : MonoBehaviour {
 
 
 	void processPlayer(Player p) {
-		if (PlayerData.inputUp(p)) {
+		if (Hammer.PlayerData.players[(int)p].up()) {
 			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.UP);
 		}
 
-		if (PlayerData.inputDown(p)) {
+		if (Hammer.PlayerData.players[(int)p].down()) {
 			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.DOWN);
 		}
 
 
-		if (PlayerData.inputLeft(p)) {
+		if (Hammer.PlayerData.players[(int)p].left()) {
 			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.LEFT);
 		}
 
-		if (PlayerData.inputRight(p)) {
+		if (Hammer.PlayerData.players[(int)p].right()) {
 			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.RIGHT);
 		}
 
@@ -131,6 +134,17 @@ public class NodeManager : MonoBehaviour {
 			nodeObjs[i].GetComponent<Node>().
 				setResourceGain((int)(nodeSpread/2.0 - dist)); 
 		}
+
+		/*
+		// Then place the player bases
+		GameObject newObj = (GameObject)Instantiate(NodeObject);
+		nodeObjs.Add(newObj);
+		Node curNode = newObj.GetComponent<Node>();
+		curNode.transform.position = new Vector3(12.f, 0.0f, 0.0f);
+		*/
+
+
+
 		
 		print (nodeObjs.Count);
 	}

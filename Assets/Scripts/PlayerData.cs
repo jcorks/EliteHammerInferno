@@ -10,14 +10,15 @@ public enum Player {
 	AI
 };
 
-
-
+namespace Hammer {
 public class PlayerData : MonoBehaviour {
 
     public static List<PlayerData> players;
 
     public static void init()
     {
+		print ("Inited");
+
         players = new List<PlayerData>();
 
         // initialize all 4 controllers
@@ -199,6 +200,7 @@ public class PlayerData : MonoBehaviour {
 	}
  */
 
+}
 }
 
 
