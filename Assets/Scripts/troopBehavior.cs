@@ -63,9 +63,15 @@ public class troopBehavior : MonoBehaviour {
 	}
 
 	void Update() {
+		if (morale > 100.0f)
+						morale = 100.0f;
+
 		statusObj.transform.position = transform.position + new Vector3(0.0f, .4f, -.4f);
 		statusObj.GetComponent<TextMesh> ().text = "Units: " + strength.ToString ();
 		statusObj.GetComponent<TroopStatus> ().setMorale (morale);
+
+
+	
 	}
 
 

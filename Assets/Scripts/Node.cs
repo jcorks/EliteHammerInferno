@@ -178,6 +178,8 @@ public class Node : MonoBehaviour {
 	}
 
 	public void moveTroop(Node dest) {
+		if (!hasTroop ())
+						return;
 		bool found = false;
 		Vector3 directionVector;
 		foreach (Node n in neighbors) {
