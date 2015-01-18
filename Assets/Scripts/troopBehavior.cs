@@ -69,39 +69,29 @@ public class troopBehavior : MonoBehaviour {
 
 		//If there is a fight, update the status every second
 		if (fightInterval == 50) {
-			if (fighting == true && !garrisoned && troopOwner == Player.PLAYER_1) {
-				float attack1 = combatResult1(0.1f,0.05f,0.8f,1f,0f);
-				float shock1 = combatResult1(0.075f,0.025f,0.8f,1f,0f);
-				float attack2 = combatResult2(0.1f,0.05f,0.8f,1f,0f);
-				float shock2 =combatResult2(0.075f,0.025f,0.8f,1f,0f);
-				strength -= attack1;
-				morale -= shock1;
-				opponent.strength -= attack2;
-				opponent.morale -= shock2;
-				Debug.Log("attack:" + attack1 + " shock:" + shock1);
-				Debug.Log("attack2:" + attack2 + " shock2:" + shock2);
-				Debug.Log("morale:" + morale + " morale2:" + opponent.morale);
-				Debug.Log("strength:" + strength + " strength2:" + opponent.strength); 
-			}
-			if (fighting && garrisoned && troopOwner != Player.PLAYER_1) {
-				float attack1 = combatResult1(0.1f,0.05f,0.8f,1f,0f);
-				float shock1 = combatResult1(0.075f,0.025f,0.8f,1f,0f);
-				float attack2 = combatResult2(0.1f,0.05f,0.6f,0.8f,0f);
-				float shock2 =combatResult2(0.075f,0.025f,0.4f,0.6f,0f);
-				strength -= attack1;
-				morale -= shock1;
-				opponent.strength -= attack2;
-				opponent.morale -= shock2;
-				Debug.Log("attack:" + attack1 + " shock:" + shock1);
-				Debug.Log("attack2:" + attack2 + " shock2:" + shock2);
-				Debug.Log("morale:" + morale + " morale2:" + opponent.morale);
-				Debug.Log("strength:" + strength + " strength2:" + opponent.strength);
-			}
-			if (fighting && garrisoned && troopOwner == Player.PLAYER_1) {
-				float attack1 = combatResult1(0.1f,0.05f,0.6f,0.8f,0f);
-				float shock1 = combatResult1(0.075f,0.025f,0.4f,0.6f,0f);
-				float attack2 = combatResult2(0.1f,0.05f,0.8f,1f,0f);
-				float shock2 =combatResult2(0.075f,0.025f,0.8f,1f,0f);
+			if (fighting) {
+				float attack1;
+				float shock1;
+				float attack2;
+				float shock2;
+				if (!garrisoned && troopOwner == Player.PLAYER_1) {
+					attack1 = combatResult1(0.1f,0.05f,0.8f,1f,0f);
+					shock1 = combatResult1(0.075f,0.025f,0.8f,1f,0f);
+					attack2 = combatResult2(0.1f,0.05f,0.8f,1f,0f);
+					shock2 =combatResult2(0.075f,0.025f,0.8f,1f,0f);
+				}
+				if (garrisoned && troopOwner != Player.PLAYER_1) {
+					attack1 = combatResult1(0.1f,0.05f,0.8f,1f,0f);
+					shock1 = combatResult1(0.075f,0.025f,0.8f,1f,0f);
+					attack2 = combatResult2(0.1f,0.05f,0.6f,0.8f,0f);
+					shock2 =combatResult2(0.075f,0.025f,0.4f,0.6f,0f);
+				}
+				if (garrisoned && troopOwner == Player.PLAYER_1) {
+					attack1 = combatResult1(0.1f,0.05f,0.6f,0.8f,0f);
+					shock1 = combatResult1(0.075f,0.025f,0.4f,0.6f,0f);
+					attack2 = combatResult2(0.1f,0.05f,0.8f,1f,0f);
+					shock2 = combatResult2(0.075f,0.025f,0.8f,1f,0f);
+				}
 				strength -= attack1;
 				morale -= shock1;
 				opponent.strength -= attack2;
