@@ -5,6 +5,7 @@ using System.Collections;
 public class Pathway : MonoBehaviour {
 
 	public Texture tex;
+	private Color cachedColor;
 
 	public Vector3 begin;
 	public Vector3 end;
@@ -45,9 +46,20 @@ public class Pathway : MonoBehaviour {
 		mesh.triangles = newTris;
 
 	}
+
+	public void setSelected(bool t) {
+		if (t) {
+			cachedColor = renderer.material.color;
+			renderer.material.color = new Color (255, 255, 0, 255);
+		} else {
+			renderer.material.color = cachedColor;
+		}	
+	}
+
 	// Use this for initialization
 	void Start () {
 		renderer.material.mainTexture = tex;
+
 	
 	}
 	

@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 public class Node : MonoBehaviour {
 
-	private troopBehavior troop;
+	private troopBehavior troop = null;
 	private List<Node> neighbors;
+	private List<Pathway> neighborPaths;
 	private int resCount = 0;
 	private int resourceGain = 10; // mad gains
 	private bool besieged = false;
@@ -64,6 +65,8 @@ public class Node : MonoBehaviour {
 		GameObject path = (GameObject)Instantiate (pathObj);
 		Pathway newPath = path.GetComponent<Pathway> ();
 		newPath.setPath (transform.position, n.transform.position);
+		neighborPaths.Add (newPath);
+		n.neighborPaths.Add (newPath);
 	}
 
 	// Removes a neighbor
@@ -79,6 +82,10 @@ public class Node : MonoBehaviour {
 	// Gets all the neighbors of a node
 	public List<Node> getNeighbors() {
 		return neighbors;
+	}
+
+	public List<Pathway> getNeighborPaths() {
+		return neighborPaths;
 	}
 
 
@@ -120,6 +127,7 @@ public class Node : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		neighbors = new List<Node> ();
+		neighborPaths = new List<Pathway> ();
 		playerOwner = Player.AI;
 	}
 
@@ -156,4 +164,24 @@ public class Node : MonoBehaviour {
 
 		resCount++;*/
 	}
+
+	// returns whether or not a troop exists on this node
+	public bool hasTroop() {
+		return troop != null;	
+	}
+
+	public void moveTroop(Node dest) {
+		bool found = false;
+		foreach (Node n in neighbors) {
+			if (n.GetInstanceID() == dest.GetInstanceID()) found = true;
+		}
+		if (!found) {
+			print("THIS SHOULDNT HAPPEN");
+		}
+
+
+
+		troop.transform.position = dest.transform.position;
+	}
+
 }

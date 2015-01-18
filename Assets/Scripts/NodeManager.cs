@@ -56,6 +56,9 @@ public class NodeManager : MonoBehaviour {
 
 
 	void processPlayer(Player p) {
+		if (playerCursors [(int)p].GetComponent<NodeCursor> ().isMoving)
+						return;
+
 		if (Hammer.PlayerData.players[(int)p].up()) {
 			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.UP);	
 		}
@@ -165,6 +168,9 @@ public class NodeManager : MonoBehaviour {
 			nodeObjs[i].GetComponent<Node>().
 				setResourceGain((int)(nodeSpread/2.0 - dist)); 
 		}
+
+
+
 
 
 		// Then place the player bases
