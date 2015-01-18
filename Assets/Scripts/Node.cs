@@ -172,25 +172,22 @@ public class Node : MonoBehaviour {
 
 	public void moveTroop(Node dest) {
 		bool found = false;
+		Vector3 directionVector;
 		foreach (Node n in neighbors) {
-			if (n.GetInstanceID() == dest.GetInstanceID()) found = true;
+			if (n.GetInstanceID() == dest.GetInstanceID()) {
+				found = true;
+				directionVector = n.gameObject.transform.position - this.gameObject.transform.position; 
+				troop.gameObject.transform.Rotate (new Vector3(0f, Vector3.Angle(new Vector3(1f, 0f, 0f),
+				                                                         directionVector), 0f));
+				troop.angleVector = directionVector;
+				troop.speed = 0.01f;
+				dest.troop = troop;
+				troop = null;
+			}
 		}
 		if (!found) {
 			print("THIS SHOULDNT HAPPEN");
 		}
-
-
-
-		troop.transform.position = dest.transform.position;
-		troop.garrisoned = dest;
-		dest.troop = troop;
-		troop = null;
-
-
-	}
-
-	void OnDestroy() {
-	
 
 	}
 
