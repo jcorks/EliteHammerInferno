@@ -120,7 +120,21 @@ public class Node : MonoBehaviour {
 		neighbors = new List<Node> ();
 		playerOwner = Player.AI;
 	}
-	
+
+	/*void OnTriggerEnter(Collider coll){
+		Debug.Log (coll.gameObject);
+		GameObject collidedWith = coll.gameObject;
+		troopBehavior clash = collidedWith.GetComponent<troopBehavior>();
+
+		if (clash.troopOwner == playerOwner) {
+			fighting = true;
+			opponent = clash;
+			Debug.Log ("clash!");
+			priorSpeed = speed;
+			speed = 0;
+		}
+	}*/
+
 	// Update is called once per frame
 	void Update () {
 
