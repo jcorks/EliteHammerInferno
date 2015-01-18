@@ -22,8 +22,9 @@ public class NodeManager : MonoBehaviour {
 	void Awake() {
 
 		//TODO remove
-
 		Hammer.PlayerData.init ();
+
+
 
 		Hammer.PlayerData.players [0].setHero (Hero.Hero_1);
 		Hammer.PlayerData.players [1].setHero (Hero.Hero_2);
