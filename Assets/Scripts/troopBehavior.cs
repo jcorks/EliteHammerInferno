@@ -11,7 +11,7 @@ public class troopBehavior : MonoBehaviour {
 	public troopBehavior opponent;
 	public bool fighting = false;
 	public Node garrisoned; //tells if the unit is in a province
-	public Hero attached;
+	public Hero attached; //tells if a hero unit is attached
 	float priorSpeed = 1;
 	float fightInterval = 0;
 

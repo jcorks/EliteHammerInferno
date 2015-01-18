@@ -12,7 +12,6 @@ public class NodeManager : MonoBehaviour {
 
 	private static List<GameObject> nodeObjs; 
 
-
 	public GameObject NodeObject;
 	public GameObject NodeCursorObj;
 
