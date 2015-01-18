@@ -74,6 +74,8 @@ public class PlayerData : MonoBehaviour {
             BuildArmy = "BuildArmy4",
             Power = "Power4"
         });
+
+		players.Add (new PlayerData ());
     }
 
 

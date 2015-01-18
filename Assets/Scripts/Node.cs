@@ -13,7 +13,7 @@ public class Node : MonoBehaviour {
 	public GameObject troopsPrefab;
 	public int passiveBonusAttack;
 	public int passiveBonusDefense;
-	public int playerOwner;
+	public Player playerOwner;
 
 	private bool base_b = false;
 
@@ -34,16 +34,12 @@ public class Node : MonoBehaviour {
 			troop.speed = 0;
 		}
 		for (int i = 0; i < numNewUnits; ++i) {
-			if (Hammer.PlayerData.players[playerOwner].Resources < troopCost) return;
-			Hammer.PlayerData.players[playerOwner].Resources -= troopCost;
+			if (Hammer.PlayerData.players[(int)playerOwner].Resources < troopCost) return;
+			Hammer.PlayerData.players[(int)playerOwner].Resources -= troopCost;
 			troop.morale = (troop.morale*troop.strength + 100)/(troop.strength+1);
 			troop.strength++;
 			Debug.Log ("unit produced:" + troop.strength);
 		}
-	}
-
-	public void changeSides (int owner){
-		playerOwner = owner;
 	}
 
 
@@ -93,7 +89,7 @@ public class Node : MonoBehaviour {
 
 	// Set the player owner
 	public void setOwner(Player p) {
-		playerOwner = (int)p;
+		playerOwner = p;
 	}
 
 	public void setResourceGain(int amt) {
@@ -122,7 +118,7 @@ public class Node : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		neighbors = new List<Node> ();
-		playerOwner = (int)Player.AI;
+		playerOwner = Player.AI;
 	}
 	
 	// Update is called once per frame
