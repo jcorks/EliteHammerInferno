@@ -157,12 +157,12 @@ public class Node : MonoBehaviour {
 	void FixedUpdate() {
 
 		// gain Resources for the owner player
-		/*if (resCount>100 && !besieged) {
-			Hammer.PlayerData.players[playerOwner].Resources += resourceGain;
+		if (resCount>100 && !besieged) {
+			Hammer.PlayerData.players[(int)playerOwner].Resources += resourceGain;
 			resCount = 0;
 		}
 
-		resCount++;*/
+		resCount++;
 	}
 
 	// returns whether or not a troop exists on this node
