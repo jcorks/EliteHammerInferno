@@ -153,11 +153,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 273558514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.79999995, y: 2.0999999, z: 79852.0469}
+  m_LocalPosition: {x: -6.03000021, y: 1.67999995, z: 79852.6875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &433486799
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,12 +251,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -1
-  troopOwner: 0
   strength: 200
   morale: 100
+  troopOwner: 0
   opponent: {fileID: 0}
   fighting: 0
-  garrisoned: 0
+  garrisoned: {fileID: 0}
+  attached: 0
 --- !u!23 &433486805
 Renderer:
   m_ObjectHideFlags: 0
@@ -309,6 +310,50 @@ RectTransform:
   m_AnchoredPosition: {x: .725370169, y: 1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
+--- !u!1001 &726505300
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 446536, guid: 09255b751a3cf7c439bef5eada116c72, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.54999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 446536, guid: 09255b751a3cf7c439bef5eada116c72, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 446536, guid: 09255b751a3cf7c439bef5eada116c72, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 79860
+      objectReference: {fileID: 0}
+    - target: {fileID: 446536, guid: 09255b751a3cf7c439bef5eada116c72, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446536, guid: 09255b751a3cf7c439bef5eada116c72, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446536, guid: 09255b751a3cf7c439bef5eada116c72, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446536, guid: 09255b751a3cf7c439bef5eada116c72, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 446536, guid: 09255b751a3cf7c439bef5eada116c72, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 09255b751a3cf7c439bef5eada116c72, type: 2}
+  m_RootGameObject: {fileID: 2018450374}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1001 &769547189
 Prefab:
   m_ObjectHideFlags: 0
@@ -442,7 +487,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22401624, guid: ca5253ea6544b5641bafeb8f13f2bbe1, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -6
+      value: -8.98999977
       objectReference: {fileID: 0}
     - target: {fileID: 22401624, guid: ca5253ea6544b5641bafeb8f13f2bbe1, type: 2}
       propertyPath: m_AnchoredPosition.y
@@ -594,12 +639,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  troopOwner: 1
   strength: 200
   morale: 100
+  troopOwner: 1
   opponent: {fileID: 0}
   fighting: 0
-  garrisoned: 0
+  garrisoned: {fileID: 0}
+  attached: 0
 --- !u!23 &1923876872
 Renderer:
   m_ObjectHideFlags: 0
@@ -649,6 +695,113 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -6, y: 1}
+  m_AnchoredPosition: {x: -8.98999977, y: 1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
+--- !u!1 &2018450374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 146536, guid: 09255b751a3cf7c439bef5eada116c72, type: 2}
+  m_PrefabInternal: {fileID: 726505300}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2018450378}
+  - 114: {fileID: 2018450377}
+  - 33: {fileID: 2018450376}
+  - 23: {fileID: 2018450375}
+  - 65: {fileID: 2018450380}
+  - 54: {fileID: 2018450379}
+  m_Layer: 0
+  m_Name: NodeObj
+  m_TagString: node
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &2018450375
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2323112, guid: 09255b751a3cf7c439bef5eada116c72,
+    type: 2}
+  m_PrefabInternal: {fileID: 726505300}
+  m_GameObject: {fileID: 2018450374}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &2018450376
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3315774, guid: 09255b751a3cf7c439bef5eada116c72,
+    type: 2}
+  m_PrefabInternal: {fileID: 726505300}
+  m_GameObject: {fileID: 2018450374}
+  m_Mesh: {fileID: 4300000, guid: a2dcf7370eae13044b5cc660887041b3, type: 3}
+--- !u!114 &2018450377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11446536, guid: 09255b751a3cf7c439bef5eada116c72,
+    type: 2}
+  m_PrefabInternal: {fileID: 726505300}
+  m_GameObject: {fileID: 2018450374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55da7f01a5249f46871d61bb6003905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  troopsPrefab: {fileID: 0}
+  passiveBonusAttack: 0
+  passiveBonusDefense: 0
+  playerOwner: 0
+  pathObj: {fileID: 172330, guid: b3b22029ee33890448df94873c51fe64, type: 2}
+--- !u!4 &2018450378
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 446536, guid: 09255b751a3cf7c439bef5eada116c72, type: 2}
+  m_PrefabInternal: {fileID: 726505300}
+  m_GameObject: {fileID: 2018450374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.54999995, y: 1, z: 79860}
+  m_LocalScale: {x: .100000001, y: .100000001, z: .100000001}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+--- !u!54 &2018450379
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5489564, guid: 09255b751a3cf7c439bef5eada116c72,
+    type: 2}
+  m_PrefabInternal: {fileID: 726505300}
+  m_GameObject: {fileID: 2018450374}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2018450380
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6549680, guid: 09255b751a3cf7c439bef5eada116c72,
+    type: 2}
+  m_PrefabInternal: {fileID: 726505300}
+  m_GameObject: {fileID: 2018450374}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 6.29081678, z: 2}
+  m_Center: {x: 0, y: 3.14459348, z: 0}
