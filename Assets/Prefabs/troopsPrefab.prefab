@@ -65,7 +65,8 @@ MonoBehaviour:
   opponent: {fileID: 0}
   fighting: 0
   garrisoned: {fileID: 0}
-  attached: 0
+  attached: 4
+  minion: {fileID: 21300000, guid: 7e3c47662429e6443ba032edeaaa4276, type: 3}
 --- !u!212 &21213108
 SpriteRenderer:
   m_ObjectHideFlags: 1
