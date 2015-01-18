@@ -13,9 +13,13 @@ public enum CursorDirection {
 public class NodeCursor : MonoBehaviour {
 
 	public GameObject NodeObj;
+	public Sprite angelTex;
+	public Sprite devilTex;
 
 
 	private Node currentNode = null;
+	private Player owner;
+	private Hero hero;
 
 	void easeTo(Vector3 v) {
 		Vector3 pos = transform.position;
@@ -31,7 +35,7 @@ public class NodeCursor : MonoBehaviour {
 
 		List<Node> nodes = currentNode.getNeighbors ();
 		float bestHeight = helper_getCurrentPlacement(dir);
-		int bestIndex = 0;
+		int bestIndex = -1;
 		for (int i = 0; i < nodes.Count; ++i) {
 
 
@@ -43,8 +47,8 @@ public class NodeCursor : MonoBehaviour {
 				bestHeight = thisHeight;
 			}
 		}
-
-		setNode (nodes [bestIndex]);
+		if (bestIndex!=-1)
+			setNode (nodes [bestIndex]);
 	}
 	float helper_getCurrentPlacement(CursorDirection c) {
 		switch (c) {
@@ -90,9 +94,24 @@ public class NodeCursor : MonoBehaviour {
 
 	}
 
+
+
+	public void setType(Player p, Hero h) {
+		owner = p;
+		hero = h;
+		if (h == Hero.Hero_1) {
+			print ("Set Hero1");	
+			GetComponent<SpriteRenderer>().sprite = angelTex;
+		} else if (h == Hero.Hero_2) {
+			print ("Set Hero2");
+			GetComponent<SpriteRenderer>().sprite = devilTex;
+		}
+	}
+
+
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
