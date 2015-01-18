@@ -71,7 +71,7 @@ MonoBehaviour:
   angel_minion: {fileID: 21300000, guid: 882a07f97a9666f41bb461aa66c275fb, type: 3}
   hero_1: {fileID: 21300000, guid: a74918f3b067e1a4abe8e1890cedc9c3, type: 3}
   hero_2: {fileID: 21300000, guid: d348da63a561f274fb6a34f893f2a565, type: 3}
-  statusPrefab: {fileID: 0}
+  statusPrefab: {fileID: 170314, guid: db874e16fa24c4245b6a8af1752d8c16, type: 2}
   statusBoxPrefab: {fileID: 0}
 --- !u!212 &21213108
 SpriteRenderer:

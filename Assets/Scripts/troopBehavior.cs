@@ -66,7 +66,12 @@ public class troopBehavior : MonoBehaviour {
 		if (morale > 100.0f)
 						morale = 100.0f;
 
-		statusObj.transform.position = transform.position + new Vector3(0.0f, .4f, -.4f);
+
+		if (troopOwner == Player.PLAYER_1)
+			statusObj.transform.position = transform.position + new Vector3(0.0f, .4f, -.4f);
+		else 
+			statusObj.transform.position = transform.position + new Vector3(0.0f, .4f, 1.0f);
+
 		statusObj.GetComponent<TextMesh> ().text = "Units: " + strength.ToString ();
 		statusObj.GetComponent<TroopStatus> ().setMorale (morale);
 
@@ -213,6 +218,7 @@ public class troopBehavior : MonoBehaviour {
 		}
 		else {
 			troopBehavior clash = collidedWith.GetComponent<troopBehavior>();
+			if (!clash) return;
 
 			if (clash.troopOwner != troopOwner) {
 				fighting = true;
@@ -225,8 +231,8 @@ public class troopBehavior : MonoBehaviour {
 			}
 			if (clash.troopOwner == this.troopOwner && clash.garrisoned) {
 				Debug.Log ("merge!");
-				this.morale = Mathf.Round((morale*strength + clash.morale*clash.strength)/(clash.strength+strength));
-				this.strength += clash.strength;
+				clash.morale = Mathf.Round((morale*strength + this.morale*this.strength)/(this.strength+strength));
+				clash.strength += this.strength;
 				Debug.Log (strength);
 				Debug.Log (morale);
 				Debug.Log ("destroy!");
