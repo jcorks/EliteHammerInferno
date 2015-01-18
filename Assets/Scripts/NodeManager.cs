@@ -11,7 +11,6 @@ public class NodeManager : MonoBehaviour {
 	private float minimumNodeProximity = 1.5f;	
 
 	private static List<GameObject> nodeObjs; 
-	
 	public GameObject NodeObject;
 	public GameObject NodeCursorObj;
 	private GameObject[] playerCursors = new GameObject[5];
