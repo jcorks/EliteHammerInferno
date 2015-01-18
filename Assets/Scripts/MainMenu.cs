@@ -283,16 +283,16 @@ public class MainMenu : MonoBehaviour {
         // Set playerdata variables for character
         if (player1ready && player2ready) {
             if (characters1[character1].Side() == true) {
-                Hammer.PlayerData.players[0].hero = Hero.Hero_1;
+                Hammer.PlayerData.players[0].setHero (Hero.Hero_1);
             }
             if (characters1[character1].Side() == false) {
-                Hammer.PlayerData.players[0].hero = Hero.Hero_2;
+                Hammer.PlayerData.players[0].setHero (Hero.Hero_2);
             }
             if (characters2[character2].Side() == true) {
-                Hammer.PlayerData.players[1].hero = Hero.Hero_1;
+                Hammer.PlayerData.players[1].setHero (Hero.Hero_1);
             }
             if (characters2[character2].Side() == false) {
-                Hammer.PlayerData.players[1].hero = Hero.Hero_2;
+                Hammer.PlayerData.players[1].setHero (Hero.Hero_2);
             }
 
             StartCoroutine("wait");

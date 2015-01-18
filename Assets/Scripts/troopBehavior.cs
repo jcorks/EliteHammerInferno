@@ -6,7 +6,7 @@ public class troopBehavior : MonoBehaviour {
 
 	public float speed;
 	public float strength;
-	public float morale;
+	public float morale = 100.0f;
 	public Player troopOwner;
 	public troopBehavior opponent;
 	public bool fighting = false;
@@ -21,13 +21,16 @@ public class troopBehavior : MonoBehaviour {
 	float heroBonusAttack = 1f;
 	float heroBonusShock = 1f;
 	float heroBonusOther = 1f;
+	float heroBonusMorale = 0f;
 	int fightTurn = 0;
 	
 	public Sprite devil_minion;
 	public Sprite angel_minion;
+	public Sprite hero_1;
+	public Sprite hero_2;
 	public GameObject statusPrefab;
 	private GameObject statusObj;
-	
+	public GameObject statusBoxPrefab;
 	// Use this for initialization
 	void Awake () {
 		//makeProperty (1000f, 1000f);
@@ -39,7 +42,7 @@ public class troopBehavior : MonoBehaviour {
 			heroBonusOther = 0.1f;
 		}
 		if (attached == Hero.Hero_2) {
-
+			heroBonusOther = 2f;
 		}
 		if (attached == Hero.Hero_3) {
 		}
@@ -59,10 +62,21 @@ public class troopBehavior : MonoBehaviour {
 		                    + morale*moraleModifier * Random.Range(randMin, randMax)+other);
 	}
 
-
 	void Update() {
-		statusObj.transform.position = transform.position + new Vector3(0.0f, .4f, -.4f);
-		statusObj.GetComponent<TextMesh> ().text = strength.ToString ();
+		if (morale > 100.0f)
+						morale = 100.0f;
+
+
+		if (troopOwner == Player.PLAYER_1)
+			statusObj.transform.position = transform.position + new Vector3(0.0f, .4f, -.4f);
+		else 
+			statusObj.transform.position = transform.position + new Vector3(0.0f, .4f, 1.0f);
+
+		statusObj.GetComponent<TextMesh> ().text = "Units: " + strength.ToString ();
+		statusObj.GetComponent<TroopStatus> ().setMorale (morale);
+
+
+	
 	}
 
 
@@ -78,8 +92,7 @@ public class troopBehavior : MonoBehaviour {
 		}
 	}*/
 	
-
-	// Update is called once per frame
+		// Update is called once per frame
 	void FixedUpdate() {
 		fightInterval++;
 		//Basic Movement
@@ -123,6 +136,10 @@ public class troopBehavior : MonoBehaviour {
 					Debug.Log("first charge!");
 					shock1 = Mathf.Round(shock1*1.2f); // angel hero1 gives bonus morale damage first engagement
 				}
+				if (attached == Hero.Hero_2 && fightTurn == 0) {
+					Debug.Log("first charge!");
+					shock1 = Mathf.Round(shock1*1.2f); // angel hero1 gives bonus morale damage first engagement
+				}
 				strength -= attack1;
 				morale -= shock1;
 				opponent.strength -= attack2;
@@ -144,19 +161,23 @@ public class troopBehavior : MonoBehaviour {
 
 		if (fighting) {
 			if (strength < 0) {
+				Debug.Log ("destroy!!");
 				Destroy (this.gameObject); //Unit destroyed
 			}
 			if (morale < 0) {
 				if (!garrisoned) {
 					speed = priorSpeed*-2; // withdraw if morale is low
 					fighting = false;
+					fightTurn = 0;
 				}
 				else {
+					Debug.Log ("destroy!!");
 					Destroy (this.gameObject); //Unit destroyed if besiefed
 				}
 			}
 			if (opponent.morale < 0 || opponent.strength < 0) { //if opponent loses move on
 				fighting = false;
+				fightTurn = 0;
 				speed = priorSpeed;
 				morale = morale + 30 % 100;
 			}
@@ -170,9 +191,9 @@ public class troopBehavior : MonoBehaviour {
 
 	public void setOwner(Player p) {
 		troopOwner = p;
-		if (Hammer.PlayerData.players [(int)p].hero == Hero.Hero_1) {
+		if (Hammer.PlayerData.players [(int)p].getHero () == Hero.Hero_1) {
 			GetComponent<SpriteRenderer>().sprite = angel_minion;
-		} else if (Hammer.PlayerData.players [(int)p].hero == Hero.Hero_2) {
+		} else if (Hammer.PlayerData.players [(int)p].getHero () == Hero.Hero_2) {
 			GetComponent<SpriteRenderer>().sprite = devil_minion;
 		}
 	}
@@ -184,16 +205,20 @@ public class troopBehavior : MonoBehaviour {
 		GameObject collidedWith = coll.gameObject;
 		if (collidedWith.tag == "node" && (collidedWith.GetComponent<Node>().playerOwner == troopOwner||collidedWith.GetComponent<Node>().playerOwner == Player.AI)){
 			Debug.Log("node found");
+
+
+
+
 			transform.position=collidedWith.transform.position;
 			garrisoned = collidedWith.GetComponent<Node>();
 			collidedWith.GetComponent<Node>().setOwner(troopOwner);
-			Debug.Log("node found");
-
+			transform.Rotate (0f, 0f ,0f);
 			speed = 0;
 
 		}
 		else {
 			troopBehavior clash = collidedWith.GetComponent<troopBehavior>();
+			if (!clash) return;
 
 			if (clash.troopOwner != troopOwner) {
 				fighting = true;
@@ -204,12 +229,13 @@ public class troopBehavior : MonoBehaviour {
 				if (garrisoned) {
 				}
 			}
-			if (clash.troopOwner == troopOwner && clash.speed == 0) {
+			if (clash.troopOwner == this.troopOwner && clash.garrisoned) {
 				Debug.Log ("merge!");
-				clash.morale = Mathf.Round((morale*strength + clash.morale*clash.strength)/(clash.strength+strength));
-				clash.strength += strength;
-				Debug.Log (clash.strength);
-				Debug.Log (clash.morale);
+				clash.morale = Mathf.Round((morale*strength + this.morale*this.strength)/(this.strength+strength));
+				clash.strength += this.strength;
+				Debug.Log (strength);
+				Debug.Log (morale);
+				Debug.Log ("destroy!");
 				Destroy (this.gameObject);
 			}
 		}
