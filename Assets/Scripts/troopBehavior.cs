@@ -6,7 +6,7 @@ public class troopBehavior : MonoBehaviour {
 
 	public float speed;
 	public float strength;
-	public float morale;
+	public float morale = 100.0f;
 	public Player troopOwner;
 	public troopBehavior opponent;
 	public bool fighting = false;
@@ -27,6 +27,7 @@ public class troopBehavior : MonoBehaviour {
 	public Sprite angel_minion;
 	public GameObject statusPrefab;
 	private GameObject statusObj;
+	public GameObject statusBoxPrefab;
 	
 	// Use this for initialization
 	void Awake () {
@@ -62,7 +63,8 @@ public class troopBehavior : MonoBehaviour {
 
 	void Update() {
 		statusObj.transform.position = transform.position + new Vector3(0.0f, .4f, -.4f);
-		statusObj.GetComponent<TextMesh> ().text = strength.ToString ();
+		statusObj.GetComponent<TextMesh> ().text = "Units: " + strength.ToString ();
+		statusObj.GetComponent<TroopStatus> ().setMorale (morale);
 	}
 
 
@@ -170,9 +172,9 @@ public class troopBehavior : MonoBehaviour {
 
 	public void setOwner(Player p) {
 		troopOwner = p;
-		if (Hammer.PlayerData.players [(int)p].hero == Hero.Hero_1) {
+		if (Hammer.PlayerData.players [(int)p].getHero () == Hero.Hero_1) {
 			GetComponent<SpriteRenderer>().sprite = angel_minion;
-		} else if (Hammer.PlayerData.players [(int)p].hero == Hero.Hero_2) {
+		} else if (Hammer.PlayerData.players [(int)p].getHero () == Hero.Hero_2) {
 			GetComponent<SpriteRenderer>().sprite = devil_minion;
 		}
 	}
