@@ -8,6 +8,7 @@ public class Node : MonoBehaviour {
 	private List<Node> neighbors;
 	private int resCount = 0;
 	private int resourceGain = 10; // mad gains
+	private bool besieged = false;
 
 	public GameObject troopsPrefab;
 	public int passiveBonusAttack;
@@ -29,6 +30,7 @@ public class Node : MonoBehaviour {
 			troop = troopObject.GetComponent<troopBehavior>();
 			troop.transform.position = transform.position;
 			troop.garrisoned = this;
+			troop.attached = Hero.None; 
 			troop.speed = 0;
 		}
 		for (int i = 0; i < numNewUnits; ++i) {
@@ -36,11 +38,13 @@ public class Node : MonoBehaviour {
 			Hammer.PlayerData.players[playerOwner].Resources -= troopCost;
 			troop.morale = (troop.morale*troop.strength + 100)/(troop.strength+1);
 			troop.strength++;
-			Debug.Log ("unit produced");
+			Debug.Log ("unit produced:" + troop.strength);
 		}
 	}
 
-
+	public void changeSides (int owner){
+		playerOwner = owner;
+	}
 
 
 
@@ -131,14 +135,13 @@ public class Node : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if (playerOwner == (int)Player.AI)
-						return;
+
 		// gain Resources for the owner player
-		if (resCount>100) {
+		/*if (resCount>100 && !besieged) {
 			Hammer.PlayerData.players[playerOwner].Resources += resourceGain;
-			Hammer.PlayerData.players[playerOwner].addTotal (resourceGain);
 			resCount = 0;
 		}
-		resCount++;
+
+		resCount++;*/
 	}
 }
