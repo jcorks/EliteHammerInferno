@@ -73,6 +73,8 @@ public class NodeManager : MonoBehaviour {
 
 
 
+
+
 	void generateNodes() {
 		nodeObjs = new List<GameObject>();
 		for (int i = 0; i < tryCount; ++i) {
@@ -135,13 +137,20 @@ public class NodeManager : MonoBehaviour {
 				setResourceGain((int)(nodeSpread/2.0 - dist)); 
 		}
 
-		/*
+
 		// Then place the player bases
 		GameObject newObj = (GameObject)Instantiate(NodeObject);
 		nodeObjs.Add(newObj);
-		Node curNode = newObj.GetComponent<Node>();
-		curNode.transform.position = new Vector3(12.f, 0.0f, 0.0f);
-		*/
+		Node cNode = newObj.GetComponent<Node>();
+		cNode.makeBase ();
+		cNode.transform.position = new Vector3(6.0f, 0.0f, 0.0f);
+
+		newObj = (GameObject)Instantiate(NodeObject);
+		nodeObjs.Add(newObj);
+		cNode = newObj.GetComponent<Node>();
+		cNode.makeBase ();
+		cNode.transform.position = new Vector3(-6.0f, 0.0f, 0.0f);
+
 
 
 

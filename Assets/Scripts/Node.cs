@@ -14,6 +14,8 @@ public class Node : MonoBehaviour {
 	public int passiveBonusDefense;
 	public int playerOwner;
 
+	private bool base_b = false;
+
 	static public int troopCost = 5;
 	public GameObject pathObj;
 
@@ -93,14 +95,23 @@ public class Node : MonoBehaviour {
 	public void setResourceGain(int amt) {
 
 		// Rescale based on amount gain
-		transform.localScale += new Vector3 (.5f*(amt / (float)troopCost), 
-		                                     .5f*(amt / (float)troopCost), 
-		                                     .5f*(amt / (float)troopCost));
+		transform.localScale += new Vector3 (.2f*(amt / (float)troopCost), 
+		                                     .2f*(amt / (float)troopCost), 
+		                                     .2f*(amt / (float)troopCost));
 
 
 		resourceGain = amt;
 	}
 
+	public void makeBase() {
+		// update visuals
+		transform.localScale = new Vector3 (.7f, .7f, .7f);
+		base_b = true;
+	}
+
+	public bool isBase() {
+		return base_b;
+	}
 
 
 
