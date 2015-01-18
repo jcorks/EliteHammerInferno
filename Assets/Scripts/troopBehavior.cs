@@ -5,16 +5,12 @@ using System.Collections.Generic;
 public class troopBehavior : MonoBehaviour {
 
 	public float speed;
-
-	public Player troopOwner;
-
 	public float strength;
-
 	public float morale;
-	
+	public Player troopOwner;
 	public troopBehavior opponent;
-	
 	public bool fighting = false;
+	public Node garrisoned; //tells if the unit is in a province
 	
 	float baseAttack = 5f;
 
@@ -40,12 +36,14 @@ public class troopBehavior : MonoBehaviour {
 		Vector3 pos = transform.position;
 		pos.x += speed * Time.deltaTime;
 		transform.position = pos;
+
+		//If there is a fight, update the status every second
 		if (fightInterval == 50) {
 			if (fighting == true && troopOwner == Player.PLAYER_1) {
-				float attack1 = Mathf.Round (opponent.strength*0.1f*Random.Range(0.8f, 1f) - opponent.morale*0.05f * Random.Range(0.8f, 1f));
-				float shock1 = Mathf.Round (opponent.strength*0.075f*Random.Range(0.8f, 1f) - opponent.morale*0.025f*Random.Range(0.8f, 1f));
-				float attack2 = Mathf.Round (strength*0.1f*Random.Range(0.8f, 1f) - morale*0.05f * Random.Range(0.8f, 1f));
-				float shock2 = Mathf.Round (strength*0.075f*Random.Range(0.8f, 1f) - morale*0.025f*Random.Range(0.8f, 1f));
+				float attack1 = Mathf.Round (opponent.strength*0.1f*Random.Range(0.8f, 1f) + opponent.morale*0.05f * Random.Range(0.8f, 1f));
+				float shock1 = Mathf.Round (opponent.strength*0.075f*Random.Range(0.8f, 1f) + opponent.morale*0.025f*Random.Range(0.8f, 1f));
+				float attack2 = Mathf.Round (strength*0.1f*Random.Range(0.8f, 1f) + morale*0.05f * Random.Range(0.8f, 1f));
+				float shock2 = Mathf.Round (strength*0.075f*Random.Range(0.8f, 1f) + morale*0.025f*Random.Range(0.8f, 1f));
 				strength -= attack1;
 				morale -= shock1;
 				opponent.strength -= attack2;
@@ -53,6 +51,9 @@ public class troopBehavior : MonoBehaviour {
 				Debug.Log("attack:" + attack1 + " shock:" + shock1);
 				Debug.Log("morale:" + morale + " morale2:" + opponent.morale);
 				Debug.Log("strength:" + strength + " strength2:" + opponent.strength); 
+			}
+			if (!fighting && garrisoned) { //morale charge
+				morale += 10;
 			}
 			fightInterval = 0;
 		}
@@ -76,7 +77,8 @@ public class troopBehavior : MonoBehaviour {
 
 	void OnTriggerEnter(Collider coll){
 		Debug.Log (coll.gameObject);
-		//Find out what hit this basket
+
+		//Find out what hit this troop
 		GameObject collidedWith = coll.gameObject;
 		troopBehavior clash = collidedWith.GetComponent<troopBehavior>();
 		if (clash.troopOwner != troopOwner) {

@@ -7,8 +7,9 @@ public class Node : MonoBehaviour {
 	private troopBehavior troop;
 	private List<Node> neighbors;
 	private int resCount = 0;
-	private int resourceGain = 0; // mad gains
+	private int resourceGain = 10; // mad gains
 
+	public GameObject troopsPrefab;
 	public int passiveBonusAttack;
 	public int passiveBonusDefense;
 	public int playerOwner;
@@ -21,10 +22,19 @@ public class Node : MonoBehaviour {
 	
 	// Produces units locally by spending resources from the pool
 	public void buildUnits (int numNewUnits) {
+		if (troop == null) {
+			GameObject troopObject = Instantiate (troopsPrefab) as GameObject;
+			troop = troopObject.GetComponent<troopBehavior>();
+			troop.transform.position = transform.position;
+			troop.garrisoned = this;
+			troop.speed = 0;
+		}
 		for (int i = 0; i < numNewUnits; ++i) {
 			if (PlayerData.Resources[playerOwner] < troopCost) return;
 			PlayerData.Resources[playerOwner] -= troopCost;
+			troop.morale = (troop.morale*troop.strength + 100)/(troop.strength+1);
 			troop.strength++;
+			Debug.Log ("unit produced");
 		}
 	}
 

@@ -99,5 +99,9 @@ public class NodeCursor : MonoBehaviour {
 	void Update () {
 		if (currentNode)
 		easeTo (currentNode.transform.position);
+		if (Input.GetKeyDown(KeyCode.L)) {
+			Debug.Log ("unit produced");
+			currentNode.buildUnits (500);
+		}
 	}
 }
