@@ -31,7 +31,7 @@ public class troopBehavior : MonoBehaviour {
 		/*Vector3 speedVec = new Vector3 (0.0f, 0.0f, speed);
 		speedVec = Vector3.Angle (fromNode.transform.position, toNode.transform.position);
 		tranform.position += speedVec;
-*?
+*/
 
 		//If there is a fight, update the status every second
 		if (fightInterval == 50) {
