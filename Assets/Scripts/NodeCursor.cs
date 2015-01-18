@@ -116,8 +116,13 @@ public class NodeCursor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		Debug.DrawLine (new Vector3 (0.0f, 30.0f, 0.0f), transform.position, new Color(255, 255, 0, 255));
+
 		if (currentNode)
 		easeTo (currentNode.transform.position);
+
+
 		if (Hammer.PlayerData.players[(int)owner].build ()) {
 			Debug.Log ("unit produced");
 			currentNode.buildUnits (500);
