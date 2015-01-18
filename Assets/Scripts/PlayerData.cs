@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public enum Player {
-	PLAYER_1,
+	PLAYER_1,	
 	PLAYER_2,
 	PLAYER_3,
 	PLAYER_4,
@@ -18,7 +18,7 @@ public class PlayerData : MonoBehaviour {
     public static void init()
     {
 		print ("Inited");
-
+		
 		
 
         players = new List<PlayerData>();
@@ -35,6 +35,7 @@ public class PlayerData : MonoBehaviour {
             MoveArmy = "MoveArmy1",
             BuildArmy = "BuildArmy1",
             Power = "Power1",
+			
 
 			
         });
@@ -223,6 +224,8 @@ public class PlayerData : MonoBehaviour {
     private string MoveArmy;
     private string BuildArmy;
     private string Power;
+	
+	public Hero hero = Hero.Hero_1;
 
 
 

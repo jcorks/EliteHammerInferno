@@ -11,7 +11,6 @@ GameObject:
   - 65: {fileID: 6585228}
   - 114: {fileID: 11432320}
   - 54: {fileID: 5459658}
-  - 222: {fileID: 22201624}
   - 212: {fileID: 21213108}
   m_Layer: 0
   m_Name: troopsPrefab
@@ -65,8 +64,14 @@ MonoBehaviour:
   opponent: {fileID: 0}
   fighting: 0
   garrisoned: {fileID: 0}
+<<<<<<< HEAD
   attached: 4
   minion: {fileID: 21300000, guid: 7e3c47662429e6443ba032edeaaa4276, type: 3}
+=======
+  attached: 0
+  devil_minion: {fileID: 21300000, guid: 7e3c47662429e6443ba032edeaaa4276, type: 3}
+  angel_minion: {fileID: 21300000, guid: 882a07f97a9666f41bb461aa66c275fb, type: 3}
+>>>>>>> origin/master
 --- !u!212 &21213108
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -87,22 +92,16 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 80471bce54c63c1438cb20b24ba75fd1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!222 &22201624
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185228}
 --- !u!224 &22401624
 RectTransform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185228}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 79880}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
