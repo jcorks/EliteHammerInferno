@@ -15,11 +15,15 @@ public class NodeCursor : MonoBehaviour {
 	public GameObject NodeObj;
 	public Sprite angelTex;
 	public Sprite devilTex;
+	public GameObject arrow;
+	private GameObject arrowObj;
 
 
 	private Node currentNode = null;
 	private Player owner;
 	private Hero hero;
+	private Pathway lastDirPath; // path way of the last node found via getNext / Pre node
+	public bool isMoving = false;
 
 	void easeTo(Vector3 v) {
 		Vector3 pos = transform.position;
@@ -32,23 +36,33 @@ public class NodeCursor : MonoBehaviour {
 
 	// Moves the cursor to the nearest candidate node in a directoin
 	public void goToNode(CursorDirection dir) {
+		Node goTo = getDirNode (dir, true);
+		if (goTo) setNode (goTo);
+	}
 
+	Node getDirNode(CursorDirection dir, bool restrict) {
+		
 		List<Node> nodes = currentNode.getNeighbors ();
 		float bestHeight = helper_getCurrentPlacement(dir);
 		int bestIndex = -1;
 		for (int i = 0; i < nodes.Count; ++i) {
-
-
+			
+			
 			Debug.DrawLine(currentNode.transform.position, nodes[i].transform.position, new Color(255, 255, 0), 1, false);
-
+			
 			float thisHeight = helper_getThisDist(dir, nodes[i]);
-			if (nodes[i].playerOwner == owner && helper_compareDist(dir, thisHeight,bestHeight)) {
+			if (helper_compareDist(dir, thisHeight,bestHeight)) {
+				if (restrict && nodes[i].playerOwner != owner) continue; 
 				bestIndex = i;
 				bestHeight = thisHeight;
 			}
 		}
-		if (bestIndex!=-1)
-			setNode (nodes [bestIndex]);
+
+		// get best one and set lastDirPath
+		if (bestIndex != -1) {
+			return nodes [bestIndex];
+		}
+		return null;
 	}
 	float helper_getCurrentPlacement(CursorDirection c) {
 		switch (c) {
@@ -120,7 +134,28 @@ public class NodeCursor : MonoBehaviour {
 		Debug.DrawLine (new Vector3 (0.0f, 30.0f, 0.0f), transform.position, new Color(255, 255, 0, 255));
 
 		if (currentNode)
-		easeTo (currentNode.transform.position);
+			easeTo (currentNode.transform.position);
+
+
+		if (isMoving) {
+			handleMove();
+			return;
+		}
+
+		// Begin move mode
+		if (Hammer.PlayerData.players [(int)owner].move () && 
+		    currentNode.hasTroop()) {
+
+			moveSelected = null;
+			arrowObj = (GameObject) Instantiate (arrow);
+			arrowObj.transform.position = currentNode.transform.position;
+
+			
+			print ("started move");
+			isMoving = true;
+		}
+
+
 
 
 		if (Hammer.PlayerData.players[(int)owner].build () || Input.GetKeyDown(KeyCode.A) ) {
@@ -128,4 +163,88 @@ public class NodeCursor : MonoBehaviour {
 			currentNode.buildUnits (500);
 		}
 	}
+
+
+
+
+	Vector3 arrowPos;
+	Node moveSelected;
+	float arrowCounter = 0;
+	int moveNodeIndex = 0;
+
+	Node getNextNode() {
+		moveNodeIndex++;
+		List<Node> nl = currentNode.getNeighbors ();
+		if (moveNodeIndex >= nl.Count) {
+			moveNodeIndex = 0;
+		}
+		lastDirPath = currentNode.getNeighborPaths () [moveNodeIndex];
+		return nl [moveNodeIndex];
+	}
+
+	Node getPrevNode() {
+		moveNodeIndex--;
+		List<Node> nl = currentNode.getNeighbors ();
+		if (moveNodeIndex < 0 ) {
+			moveNodeIndex = nl.Count - 1;
+		}
+		lastDirPath = currentNode.getNeighborPaths () [moveNodeIndex];
+		return nl [moveNodeIndex];
+	}
+
+	void handleMove() {
+
+		if (lastDirPath)
+		    lastDirPath.setSelected(false);
+		    
+
+
+		if (Hammer.PlayerData.players [(int)owner].up ()) {
+			moveSelected = getNextNode();
+		}
+		if (Hammer.PlayerData.players [(int)owner].down ()) {
+			moveSelected = getPrevNode();
+		}
+		if (Hammer.PlayerData.players [(int)owner].left ()) {
+			moveSelected = getNextNode();
+		}
+		if (Hammer.PlayerData.players [(int)owner].right ()) {
+			moveSelected = getPrevNode();
+		}
+
+
+
+		if (moveSelected) {
+			if (lastDirPath)
+				lastDirPath.setSelected(true);
+			arrowPos = moveSelected.transform.position;
+			arrowObj.transform.position = arrowPos + 
+				new Vector3(0.0f, 0.4f ,.2f * Mathf.Sin (arrowCounter)*.8f + .9f);
+			arrowCounter += .1f;
+		}
+
+
+
+		if (Hammer.PlayerData.players[(int)owner].move () && moveSelected) {
+			// do move stuff
+			currentNode.moveTroop(moveSelected);
+
+
+				
+
+			// end move
+			isMoving = false;
+			Destroy(arrowObj);
+			print ("move end");
+			lastDirPath.setSelected(false);
+			return;
+		}
+	
+
+	}
+
+
 }
+
+
+
