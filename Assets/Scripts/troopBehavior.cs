@@ -13,12 +13,9 @@ public class troopBehavior : MonoBehaviour {
 	public Node garrisoned; //tells if the unit is in a province
 	public Hero attached; //tells if a hero unit is attached
 	public Sprite minion; 
-<<<<<<< HEAD
 
-
-=======
 	public Vector3 angleVector = new Vector3(0f,0f,0f);
->>>>>>> a6389887f8bf61e2ef6c20d22a7803059470fb1a
+
 	float priorSpeed = 1f;
 	float fightInterval = 0f;
 	float heroBonusAttack = 1f;
