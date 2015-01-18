@@ -44,7 +44,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: .5, y: .5, z: .5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11432320
 MonoBehaviour:
@@ -66,7 +66,6 @@ MonoBehaviour:
   garrisoned: {fileID: 0}
   attached: 4
   minion: {fileID: 21300000, guid: 7e3c47662429e6443ba032edeaaa4276, type: 3}
-  attached: 0
   devil_minion: {fileID: 21300000, guid: 7e3c47662429e6443ba032edeaaa4276, type: 3}
   angel_minion: {fileID: 21300000, guid: 882a07f97a9666f41bb461aa66c275fb, type: 3}
 --- !u!212 &21213108

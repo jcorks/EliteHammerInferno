@@ -123,7 +123,7 @@ public class NodeCursor : MonoBehaviour {
 		easeTo (currentNode.transform.position);
 
 
-		if (Hammer.PlayerData.players[(int)owner].build ()) {
+		if (Hammer.PlayerData.players[(int)owner].build () || Input.GetKeyDown(KeyCode.A) ) {
 			Debug.Log ("unit produced");
 			currentNode.buildUnits (500);
 		}

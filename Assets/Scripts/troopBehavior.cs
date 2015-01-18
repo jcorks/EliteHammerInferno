@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class troopBehavior : MonoBehaviour {
 
-	public float speed;
+	public float speed= 0.0f;
 	public float strength;
 	public float morale;
 	public Player troopOwner;
@@ -56,9 +56,12 @@ public class troopBehavior : MonoBehaviour {
 	void FixedUpdate() {
 		fightInterval++;
 		//Basic Movement
+
+
 		Vector3 pos = transform.position;
 		pos.x += speed * Time.deltaTime;
 		transform.position = pos;
+
 
 		/*Vector3 speedVec = new Vector3 (0.0f, 0.0f, speed);
 		speedVec = Vector3.Angle (fromNode.transform.position, toNode.transform.position);
@@ -149,16 +152,18 @@ public class troopBehavior : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider coll){
+		if (!coll)
+						return;
 		Debug.Log (coll.gameObject);
 
 		//Find out what hit this troop
 		GameObject collidedWith = coll.gameObject;
 		if (collidedWith.tag == "node" && (collidedWith.GetComponent<Node>().playerOwner == troopOwner||collidedWith.GetComponent<Node>().playerOwner == Player.AI)){
-			Debug.Log("node found");
 			transform.position=collidedWith.transform.position;
+			print (transform.position);
 			garrisoned = collidedWith.GetComponent<Node>();
 			collidedWith.GetComponent<Node>().setOwner(troopOwner);
-			Debug.Log("node found");
+			//Debug.Log("node found");
 
 			speed = 0;
 
