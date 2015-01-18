@@ -64,14 +64,11 @@ MonoBehaviour:
   opponent: {fileID: 0}
   fighting: 0
   garrisoned: {fileID: 0}
-<<<<<<< HEAD
   attached: 4
   minion: {fileID: 21300000, guid: 7e3c47662429e6443ba032edeaaa4276, type: 3}
-=======
   attached: 0
   devil_minion: {fileID: 21300000, guid: 7e3c47662429e6443ba032edeaaa4276, type: 3}
   angel_minion: {fileID: 21300000, guid: 882a07f97a9666f41bb461aa66c275fb, type: 3}
->>>>>>> origin/master
 --- !u!212 &21213108
 SpriteRenderer:
   m_ObjectHideFlags: 1

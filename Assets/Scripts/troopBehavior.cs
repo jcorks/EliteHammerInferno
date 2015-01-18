@@ -12,23 +12,16 @@ public class troopBehavior : MonoBehaviour {
 	public bool fighting = false;
 	public Node garrisoned; //tells if the unit is in a province
 	public Hero attached; //tells if a hero unit is attached
-<<<<<<< HEAD
 	public Sprite minion; 
 	float priorSpeed = 1f;
 	float fightInterval = 0f;
 	float heroBonusAttack = 1f;
 	float heroBonusShock = 1f;
 	float heroBonusOther = 1f;
-=======
-
-
+	
 	public Sprite devil_minion;
 	public Sprite angel_minion;
-
-	float priorSpeed = 1;
-	float fightInterval = 0;
-
->>>>>>> origin/master
+	
 	// Use this for initialization
 	void Awake () {
 		//makeProperty (1000f, 1000f);
