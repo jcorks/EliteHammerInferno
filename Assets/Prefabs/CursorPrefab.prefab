@@ -41,6 +41,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NodeObj: {fileID: 146536, guid: 09255b751a3cf7c439bef5eada116c72, type: 2}
+  angelTex: {fileID: 21300000, guid: 4ae5582b47a10314eb2c7fcc36de1c55, type: 3}
+  devilTex: {fileID: 21300000, guid: 1778d02054e2c054dacae96cae18a54e, type: 3}
 --- !u!212 &21298172
 SpriteRenderer:
   m_ObjectHideFlags: 1

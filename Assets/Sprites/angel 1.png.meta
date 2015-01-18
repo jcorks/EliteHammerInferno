@@ -5,7 +5,7 @@ TextureImporter:
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -25,7 +25,11 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
+<<<<<<< HEAD
     aniso: 16
+=======
+    aniso: 0
+>>>>>>> 9918c3bc38ccd7fc541d8406988f67eead0c016b
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0

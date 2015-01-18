@@ -4,29 +4,33 @@ using System.Collections.Generic;
 
 public class NodeManager : MonoBehaviour {
 	private float nodeSpread			=8.7f; 		// Total range of the map
-	private int tryCount				=1000;		// Number of nodes to try to make. May vary from actual nodes 
+	private int tryCount				=4000;		// Number of nodes to try to make. May vary from actual nodes 
 	private float minTolerance			=1.0f;		// Minimum distance allowable for a node connection
 	private float maxTolerance			=2.4f;		// Maximum distance allowable for a node connection
 	private int maxNeighbors			=4;			// maximum number of neighbors
 	private float minimumNodeProximity = 1.5f;	
 
 	private static List<GameObject> nodeObjs; 
-
-
 	public GameObject NodeObject;
 	public GameObject NodeCursorObj;
-
 	private GameObject[] playerCursors = new GameObject[5];
 
 
 
+
+
 	void Awake() {
+
+		//TODO remove
+
+
 		Hammer.PlayerData.init ();
+
+		Hammer.PlayerData.players [0].hero = Hero.Hero_1;
+		Hammer.PlayerData.players [1].hero = Hero.Hero_2;
+
 		generateNodes ();
-		for (int i = 0; i < 1; ++i) {
-			playerCursors[i] = (GameObject)Instantiate (NodeCursorObj);
-			playerCursors[i].GetComponent<NodeCursor>().setNode(nodeObjs[i].GetComponent<Node>());
-		}
+
 
 
 	}
@@ -44,7 +48,7 @@ public class NodeManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		processPlayer (Player.PLAYER_1);
-		//processPlayer (Player.PLAYER_2);
+		processPlayer (Player.PLAYER_2);
 		//processPlayer (Player.PLAYER_3);
 		//processPlayer (Player.PLAYER_4);
 	}
@@ -53,7 +57,7 @@ public class NodeManager : MonoBehaviour {
 
 	void processPlayer(Player p) {
 		if (Hammer.PlayerData.players[(int)p].up()) {
-			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.UP);
+			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.UP);	
 		}
 
 		if (Hammer.PlayerData.players[(int)p].down()) {
@@ -77,6 +81,14 @@ public class NodeManager : MonoBehaviour {
 
 	void generateNodes() {
 		nodeObjs = new List<GameObject>();
+
+		float leftMost = float.MaxValue;
+		float rightMost = float.MaxValue;
+		Node rightMostNode = null;
+		Node leftMostNode = null;
+		Vector3 leftPoint = new Vector3(-6.0f, 0.0f, 0.0f);
+		Vector3 rightPoint = new Vector3 (6.0f, 0.0f, 0.0f);
+
 		for (int i = 0; i < tryCount; ++i) {
 			// First get the position of the next node
 			bool tooClose = false;
@@ -93,11 +105,28 @@ public class NodeManager : MonoBehaviour {
 			// If the node conflicted with a current position based on the restrictions
 			// then we have a failed node.
 			if (tooClose) continue;
-			
+
+
+
 			
 			GameObject n = (GameObject)Instantiate(NodeObject);
 			nodeObjs.Add(n);
 			Node curNode = n.GetComponent<Node>();
+
+			// We also want the rightmost and leftmost nodes
+			float dist = Vector3.Distance(newPos, leftPoint);
+			if (dist < leftMost) {
+				leftMost = dist;
+				leftMostNode = curNode;
+			}
+
+			dist = Vector3.Distance(newPos, rightPoint);
+			if (dist < rightMost) {
+				rightMost = dist;
+				rightMostNode = curNode;
+			}
+
+
 			curNode.transform.position = newPos;
 		}
 		
@@ -145,14 +174,25 @@ public class NodeManager : MonoBehaviour {
 		cNode.makeBase ();
 		cNode.transform.position = new Vector3(6.0f, 0.0f, 0.0f);
 
+		cNode.connectNode (rightMostNode);
+		cNode.setOwner (Player.PLAYER_2);
+		playerCursors[1] = (GameObject)Instantiate (NodeCursorObj);
+		playerCursors[1].GetComponent<NodeCursor> ().setNode(cNode);
+		playerCursors[1].GetComponent<NodeCursor> ().setType (Player.PLAYER_2);
+
+		
 		newObj = (GameObject)Instantiate(NodeObject);
 		nodeObjs.Add(newObj);
 		cNode = newObj.GetComponent<Node>();
 		cNode.makeBase ();
 		cNode.transform.position = new Vector3(-6.0f, 0.0f, 0.0f);
 
-
-
+		cNode.connectNode (leftMostNode);
+		cNode.setOwner (Player.PLAYER_1);
+		playerCursors[0] = (GameObject)Instantiate (NodeCursorObj);
+		playerCursors[0].GetComponent<NodeCursor> ().setNode(cNode);
+		playerCursors[0].GetComponent<NodeCursor> ().setType (Player.PLAYER_1);
+		
 
 		
 		print (nodeObjs.Count);

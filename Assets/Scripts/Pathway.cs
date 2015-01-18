@@ -20,9 +20,9 @@ public class Pathway : MonoBehaviour {
 
 
 		verts [0] = begin;
-		verts [1] = begin + (new Vector3 (.1f, 0.0f, 0.1f));
+		verts [1] = begin + (new Vector3 (.15f, 0.0f, 0.1f));
 		verts [2] = end;
-		verts [3] = end + (new Vector3 (.1f, 0.0f, 0.1f));
+		verts [3] = end + (new Vector3 (.1f, 0.0f, 0.15f));
 
 		texCoords[0] = new Vector2 (0, 0);
 		texCoords[1] = new Vector2 (1, 0);

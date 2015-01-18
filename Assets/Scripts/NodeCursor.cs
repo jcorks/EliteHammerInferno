@@ -13,9 +13,13 @@ public enum CursorDirection {
 public class NodeCursor : MonoBehaviour {
 
 	public GameObject NodeObj;
+	public Sprite angelTex;
+	public Sprite devilTex;
 
 
 	private Node currentNode = null;
+	private Player owner;
+	private Hero hero;
 
 	void easeTo(Vector3 v) {
 		Vector3 pos = transform.position;
@@ -31,20 +35,20 @@ public class NodeCursor : MonoBehaviour {
 
 		List<Node> nodes = currentNode.getNeighbors ();
 		float bestHeight = helper_getCurrentPlacement(dir);
-		int bestIndex = 0;
+		int bestIndex = -1;
 		for (int i = 0; i < nodes.Count; ++i) {
 
 
 			Debug.DrawLine(currentNode.transform.position, nodes[i].transform.position, new Color(255, 255, 0), 1, false);
 
 			float thisHeight = helper_getThisDist(dir, nodes[i]);
-			if (helper_compareDist(dir, thisHeight,bestHeight)) {
+			if (nodes[i].playerOwner == owner && helper_compareDist(dir, thisHeight,bestHeight)) {
 				bestIndex = i;
 				bestHeight = thisHeight;
 			}
 		}
-
-		setNode (nodes [bestIndex]);
+		if (bestIndex!=-1)
+			setNode (nodes [bestIndex]);
 	}
 	float helper_getCurrentPlacement(CursorDirection c) {
 		switch (c) {
@@ -90,16 +94,36 @@ public class NodeCursor : MonoBehaviour {
 
 	}
 
+
+
+	public void setType(Player p) {
+		owner = p;
+		hero = Hammer.PlayerData.players [(int)p].hero;
+		if (hero == Hero.Hero_1) {
+			print ("Set Hero1");	
+			GetComponent<SpriteRenderer>().sprite = angelTex;
+		} else if (hero == Hero.Hero_2) {
+			print ("Set Hero2");
+			GetComponent<SpriteRenderer>().sprite = devilTex;
+		}
+	}
+
+
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		Debug.DrawLine (new Vector3 (0.0f, 30.0f, 0.0f), transform.position, new Color(255, 255, 0, 255));
+
 		if (currentNode)
 		easeTo (currentNode.transform.position);
-		if (Input.GetKeyDown(KeyCode.L)) {
+
+
+		if (Hammer.PlayerData.players[(int)owner].build () || Input.GetKeyDown(KeyCode.A) ) {
 			Debug.Log ("unit produced");
 			currentNode.buildUnits (500);
 		}

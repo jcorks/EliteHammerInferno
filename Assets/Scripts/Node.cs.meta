@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: c55da7f01a5249f46871d61bb6003905
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - troopsPrefab: {fileID: 172330, guid: b3b22029ee33890448df94873c51fe64, type: 2}
+  - pathObj: {fileID: 198172, guid: 7a5e600773973434d9f9608f43559aee, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
