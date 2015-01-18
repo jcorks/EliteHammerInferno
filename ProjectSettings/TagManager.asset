@@ -5,6 +5,7 @@ TagManager:
   tags:
   - troop
   - angel
+  - node
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

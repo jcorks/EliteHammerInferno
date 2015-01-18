@@ -43,10 +43,11 @@ public class Pathway : MonoBehaviour {
 		mesh.vertices = verts;
 		mesh.uv = texCoords;
 		mesh.triangles = newTris;
+
 	}
 	// Use this for initialization
 	void Start () {
-
+		renderer.material.mainTexture = tex;
 	
 	}
 	

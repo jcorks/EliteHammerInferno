@@ -11,9 +11,11 @@ GameObject:
   - 114: {fileID: 11446536}
   - 33: {fileID: 3315774}
   - 23: {fileID: 2323112}
+  - 65: {fileID: 6549680}
+  - 54: {fileID: 5489564}
   m_Layer: 0
   m_Name: NodeObj
-  m_TagString: Untagged
+  m_TagString: node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,6 +59,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146536}
   m_Mesh: {fileID: 4300000, guid: a2dcf7370eae13044b5cc660887041b3, type: 3}
+--- !u!54 &5489564
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146536}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6549680
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146536}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 6.29081678, z: 2}
+  m_Center: {x: 0, y: 3.14459348, z: 0}
 --- !u!114 &11446536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c55da7f01a5249f46871d61bb6003905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  troopsPrefab: {fileID: 0}
   passiveBonusAttack: 0
   passiveBonusDefense: 0
   playerOwner: 0

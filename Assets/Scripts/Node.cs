@@ -8,11 +8,14 @@ public class Node : MonoBehaviour {
 	private List<Node> neighbors;
 	private int resCount = 0;
 	private int resourceGain = 10; // mad gains
+	private bool besieged = false;
 
 	public GameObject troopsPrefab;
 	public int passiveBonusAttack;
 	public int passiveBonusDefense;
-	public int playerOwner;
+	public Player playerOwner;
+
+	private bool base_b = false;
 
 	static public int troopCost = 5;
 	public GameObject pathObj;
@@ -27,18 +30,17 @@ public class Node : MonoBehaviour {
 			troop = troopObject.GetComponent<troopBehavior>();
 			troop.transform.position = transform.position;
 			troop.garrisoned = this;
+			troop.attached = Hero.None; 
 			troop.speed = 0;
 		}
 		for (int i = 0; i < numNewUnits; ++i) {
-			if (Hammer.PlayerData.players[playerOwner].Resources < troopCost) return;
-			Hammer.PlayerData.players[playerOwner].Resources -= troopCost;
+			if (Hammer.PlayerData.players[(int)playerOwner].Resources < troopCost) return;
+			Hammer.PlayerData.players[(int)playerOwner].Resources -= troopCost;
 			troop.morale = (troop.morale*troop.strength + 100)/(troop.strength+1);
 			troop.strength++;
-			Debug.Log ("unit produced");
+			Debug.Log ("unit produced:" + troop.strength);
 		}
 	}
-
-
 
 
 
@@ -87,29 +89,52 @@ public class Node : MonoBehaviour {
 
 	// Set the player owner
 	public void setOwner(Player p) {
-		playerOwner = (int)p;
+		playerOwner = p;
 	}
 
 	public void setResourceGain(int amt) {
 
 		// Rescale based on amount gain
-		transform.localScale += new Vector3 (.5f*(amt / (float)troopCost), 
-		                                     .5f*(amt / (float)troopCost), 
-		                                     .5f*(amt / (float)troopCost));
+		transform.localScale += new Vector3 (.2f*(amt / (float)troopCost), 
+		                                     .2f*(amt / (float)troopCost), 
+		                                     .2f*(amt / (float)troopCost));
 
 
 		resourceGain = amt;
 	}
 
+	public void makeBase() {
+		// update visuals
+		transform.localScale = new Vector3 (.7f, .7f, .7f);
+		base_b = true;
+	}
+
+	public bool isBase() {
+		return base_b;
+	}
 
 
 
 	// Use this for initialization
 	void Awake () {
 		neighbors = new List<Node> ();
-		playerOwner = (int)Player.AI;
+		playerOwner = Player.AI;
 	}
-	
+
+	/*void OnTriggerEnter(Collider coll){
+		Debug.Log (coll.gameObject);
+		GameObject collidedWith = coll.gameObject;
+		troopBehavior clash = collidedWith.GetComponent<troopBehavior>();
+
+		if (clash.troopOwner == playerOwner) {
+			fighting = true;
+			opponent = clash;
+			Debug.Log ("clash!");
+			priorSpeed = speed;
+			speed = 0;
+		}
+	}*/
+
 	// Update is called once per frame
 	void Update () {
 
@@ -120,14 +145,13 @@ public class Node : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if (playerOwner == (int)Player.AI)
-						return;
+
 		// gain Resources for the owner player
-		if (resCount>100) {
+		/*if (resCount>100 && !besieged) {
 			Hammer.PlayerData.players[playerOwner].Resources += resourceGain;
-			Hammer.PlayerData.players[playerOwner].addTotal (resourceGain);
 			resCount = 0;
 		}
-		resCount++;
+
+		resCount++;*/
 	}
 }

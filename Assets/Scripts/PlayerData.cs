@@ -19,6 +19,8 @@ public class PlayerData : MonoBehaviour {
     {
 		print ("Inited");
 
+		
+
         players = new List<PlayerData>();
 
         // initialize all 4 controllers
@@ -32,7 +34,9 @@ public class PlayerData : MonoBehaviour {
             AltVertical = "AltVertical1",
             MoveArmy = "MoveArmy1",
             BuildArmy = "BuildArmy1",
-            Power = "Power1"
+            Power = "Power1",
+
+			
         });
         players.Add(new PlayerData()
         {
@@ -51,7 +55,7 @@ public class PlayerData : MonoBehaviour {
             Resources = 0,
             TotalResources = 0,
             Horizontal = "Horizontal3",
-            Vertical = "Vertical1",
+            Vertical = "Vertical3",
             AltHorizontal = "AltHorizontal3",
             AltVertical = "AltVertical3",
             MoveArmy = "MoveArmy3",
@@ -70,43 +74,133 @@ public class PlayerData : MonoBehaviour {
             BuildArmy = "BuildArmy4",
             Power = "Power4"
         });
+
+		players.Add (new PlayerData ());
     }
+
+
 
     // Processing controls returns bool if pressed/active
     // Usage: if( PlayerData.players[i].left() )
     public bool left()
     {
-        return (Input.GetAxis(Horizontal) < 0 || Input.GetAxis(AltHorizontal) < 0);
+		//	return false;
+		//return (Input.GetAxis(AltHorizontal) < 0 || Input.GetAxis (Horizontal) < 0);
+		
+
+
+			if (Input.GetAxis(AltHorizontal) < 0 || Input.GetAxis (Horizontal) < -.4) {
+				if (leftPressedC > 0) {
+					leftPressedC -= Time.deltaTime;
+					return false;
+				}
+				leftPressedC = gracePeriodSeconds;
+				return true;
+			}
+			leftPressedC = -1.0f;
+			return false;
+
+
+
+		
     }
 
     public bool right()
     {
-        return (Input.GetAxis(Horizontal) > 0 || Input.GetAxis(AltHorizontal) > 0);
+		//	return false;
+		//return (Input.GetAxis(AltHorizontal) > 0 || Input.GetAxis (Horizontal) > 0);
+		
+			if (Input.GetAxis(AltHorizontal) > 0 || Input.GetAxis(Horizontal) > .4) {
+				if (rightPressedC > 0) {
+					rightPressedC -= Time.deltaTime;
+					return false;
+				}
+				rightPressedC = gracePeriodSeconds;
+				return true;
+		}
+		rightPressedC = -1.0f;
+		return false;
+
     }
 
     public bool up()
     {
-        return (Input.GetAxis(Vertical) > 0 || Input.GetAxis(AltVertical) > 0);
+	
+
+		//return (Input.GetAxis(AltVertical) > 0 || Input.GetAxis (Vertical) > 0);
+		
+			if (Input.GetAxis(AltVertical) > 0 || Input.GetAxis(Vertical) > .4) {
+				if (upPressedC > 0) {
+					upPressedC -= Time.deltaTime;
+					return false;
+				}
+				upPressedC = gracePeriodSeconds;
+				return true;
+		}
+			upPressedC = -1.0f;
+		return false;
+	
     }
 
     public bool down()
     {
-        return (Input.GetAxis(Vertical) < 0 || Input.GetAxis(AltVertical) < 0);
+		//	return false;
+		//return (Input.GetAxis(AltVertical) < 0 || Input.GetAxis (Vertical) < 0);
+		
+		if (Input.GetAxis(AltVertical) < 0 || Input.GetAxis(Vertical) < -.4) {
+				if (downPressedC > 0) {
+					downPressedC -= Time.deltaTime;
+					return false;
+				}
+				downPressedC = gracePeriodSeconds;
+				return true;
+		}
+		downPressedC = -1.0f;
+		return false;
+		
     }
 
     public bool move()
     {
-        return (Input.GetButton(MoveArmy));
+		if (Input.GetButton(MoveArmy)) {
+			if (movePressedC > 0) {
+				movePressedC -= Time.deltaTime;
+				return false;
+			}
+			movePressedC = gracePeriodSeconds;
+			return true;
+		}
+		movePressedC = -1.0f;
+		return false;
     }
 
     public bool build()
     {
-        return (Input.GetButton(BuildArmy));
+		if (Input.GetButton(BuildArmy)) {
+			if (buildPressedC > 0) {
+				buildPressedC -= Time.deltaTime;
+				return false;
+			}
+			buildPressedC = gracePeriodSeconds;
+			return true;
+		}
+		buildPressedC = -1.0f;
+		return false;
+ 
     }
 
     public bool ability()
     {
-        return (Input.GetButton(Power));
+		if (Input.GetButton(Power)) {
+			if (abilityPressedC > 0) {
+				abilityPressedC -= Time.deltaTime;
+				return false;
+			}
+			abilityPressedC = gracePeriodSeconds;
+			return true;
+		}
+		abilityPressedC = -1.0f;
+		return false;
     }
 
     public void addTotal(int add)
@@ -130,6 +224,18 @@ public class PlayerData : MonoBehaviour {
     private string BuildArmy;
     private string Power;
 
+
+
+
+	private float upPressedC = 0;
+	private float downPressedC = 0;
+	private float leftPressedC = 0;
+	private float rightPressedC = 0;
+	private float movePressedC = 0;
+	private float buildPressedC = 0;
+	private float abilityPressedC = 0;
+
+	private float gracePeriodSeconds = .17f;
 /*
 	static public int[] Resources = new int[5];
 

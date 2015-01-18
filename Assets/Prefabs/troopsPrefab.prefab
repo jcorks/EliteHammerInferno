@@ -114,11 +114,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -1
+  strength: 200
+  morale: 100
   troopOwner: 0
-  strength: 100
-  morale: 200
   opponent: {fileID: 0}
   fighting: 0
+  garrisoned: {fileID: 0}
+  attached: 0
 --- !u!222 &22201624
 CanvasRenderer:
   m_ObjectHideFlags: 1
