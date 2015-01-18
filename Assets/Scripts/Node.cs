@@ -182,6 +182,16 @@ public class Node : MonoBehaviour {
 
 
 		troop.transform.position = dest.transform.position;
+		troop.garrisoned = dest;
+		dest.troop = troop;
+		troop = null;
+
+
+	}
+
+	void OnDestroy() {
+	
+
 	}
 
 }
