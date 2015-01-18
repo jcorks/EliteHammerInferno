@@ -14,20 +14,11 @@ namespace Hammer {
 public class PlayerData : MonoBehaviour {
 
 
-
-
     public static List<PlayerData> players;
 
     public static void init()
     {
 		print ("Inited");
-<<<<<<< HEAD
-
-        
-=======
-		
-		
->>>>>>> 9918c3bc38ccd7fc541d8406988f67eead0c016b
 
         players = new List<PlayerData>();
 
