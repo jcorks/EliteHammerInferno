@@ -13,13 +13,16 @@ public enum Player {
 namespace Hammer {
 public class PlayerData : MonoBehaviour {
 
+
+
+
     public static List<PlayerData> players;
 
     public static void init()
     {
 		print ("Inited");
 
-		
+        
 
         players = new List<PlayerData>();
 
@@ -27,6 +30,7 @@ public class PlayerData : MonoBehaviour {
         players.Add(new PlayerData()
         {
             Resources = 0,
+            Character = 0,
             TotalResources = 0,
             Horizontal = "Horizontal1",
             Vertical = "Vertical1",
@@ -41,6 +45,7 @@ public class PlayerData : MonoBehaviour {
         players.Add(new PlayerData()
         {
             Resources = 0,
+            Character = 0,
             TotalResources = 0,
             Horizontal = "Horizontal2",
             Vertical = "Vertical2",
@@ -53,6 +58,7 @@ public class PlayerData : MonoBehaviour {
         players.Add(new PlayerData()
         {
             Resources = 0,
+            Character = 0,
             TotalResources = 0,
             Horizontal = "Horizontal3",
             Vertical = "Vertical3",
@@ -65,6 +71,7 @@ public class PlayerData : MonoBehaviour {
         players.Add(new PlayerData()
         {
             Resources = 0,
+            Character = 0,
             TotalResources = 0,
             Horizontal = "Horizontal4",
             Vertical = "Vertical4",
@@ -213,6 +220,11 @@ public class PlayerData : MonoBehaviour {
         return TotalResources;
     }
 
+    public void setCharacter(int number)
+    {
+        Character = number;
+    }
+
     //Variables
     public int Resources;
     private int TotalResources;
@@ -224,9 +236,8 @@ public class PlayerData : MonoBehaviour {
     private string BuildArmy;
     private string Power;
 
-
-
-
+    private int Character;
+ 
 	private float upPressedC = 0;
 	private float downPressedC = 0;
 	private float leftPressedC = 0;
@@ -236,77 +247,9 @@ public class PlayerData : MonoBehaviour {
 	private float abilityPressedC = 0;
 
 	private float gracePeriodSeconds = .17f;
-/*
-	static public int[] Resources = new int[5];
-
-	static public bool[] confirmInput = new bool[5];
-	static public bool[] backInput = new bool[5];
-	static public bool[] upInput = new bool[5];
-	static public bool[] downInput = new bool[5];
-	static public bool[] leftInput = new bool[5];
-	static public bool[] rightInput = new bool[5];
 
 
-
-
-	static public bool inputConfirm(Player p) {
-		// replace with proper player's input
-		return (Input.GetKey (KeyCode.Z));
-	}
-
-	
-	static public bool inputBack(Player p) {
-		// replace with proper player's input
-		return (Input.GetKeyDown (KeyCode.X));
-	}
-
-	
-	static public bool inputUp(Player p) {
-		// replace with proper player's input
-		if (p == Player.PLAYER_1)
-			return (Input.GetKeyDown (KeyCode.UpArrow));
-
-		return false;
-	}
-
-	
-	static public bool inputDown(Player p) {
-		// replace with proper player's input
-		if (p == Player.PLAYER_1)
-			return (Input.GetKeyDown(KeyCode.DownArrow));
-
-		return false;
-	}
-	
-	static public bool inputLeft(Player p) {
-		// replace with proper player's input
-		if (p == Player.PLAYER_1)
-			return (Input.GetKeyDown (KeyCode.LeftArrow));
-		return false;
-	}
-
-	
-	static public bool inputRight(Player p) {
-		// replace with proper player's input
-		if (p == Player.PLAYER_1)
-			return (Input.GetKeyDown (KeyCode.RightArrow));
-
-		return false;
-	}
-    
-   	// Use this for initialization
-	void Start () {
-		for(int i = 0; i < 5; ++i) 
-			Resources[i] = 0;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
- */
-
-}
+    }
 }
 
 

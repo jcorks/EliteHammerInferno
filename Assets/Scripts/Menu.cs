@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Menu : MonoBehaviour {
 
+    public GameObject audio;
     private Animator _animator;
     private CanvasGroup _canvasgroup;
 
@@ -12,6 +13,10 @@ public class Menu : MonoBehaviour {
         set { _animator.SetBool("isOpen", value); }
     }
 
+    public void ActivateClick()
+    {
+        audio.SetActive(true);
+    }
     public void Awake()
     {
         _animator = GetComponent<Animator>();
