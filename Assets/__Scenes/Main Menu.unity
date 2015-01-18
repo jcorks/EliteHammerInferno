@@ -2145,7 +2145,7 @@ MonoBehaviour:
   hell1: {fileID: 1060930004}
   hell2: {fileID: 459848881}
   player1up: {fileID: 646843534}
-  player2up: {fileID: 0}
+  player2up: {fileID: 646843534}
   player1set: {fileID: 1400537529}
   player2set: {fileID: 1419159912}
   click: {fileID: 423749810}

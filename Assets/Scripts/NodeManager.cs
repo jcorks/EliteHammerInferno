@@ -23,14 +23,6 @@ public class NodeManager : MonoBehaviour {
 
 		//TODO remove
 
-
-
-
-		Hammer.PlayerData.init ();
-		print ("Player count: " + Hammer.PlayerData.players.Count);
-		Hammer.PlayerData.players [0].setHero (Hero.Hero_1);
-		Hammer.PlayerData.players [1].setHero (Hero.Hero_2);
-
 		generateNodes ();
 
 
