@@ -142,9 +142,17 @@ public class NodeCursor : MonoBehaviour {
 			return;
 		}
 
+
+		// active special
+		if (Hammer.PlayerData.players [(int)owner].ability () &&
+			currentNode.troop && currentNode.troop.attached!=Hero.None) {
+
+
+
+		}
+		    
 		// Begin move mode
-		if (Hammer.PlayerData.players [(int)owner].move () && 
-		    currentNode.hasTroop()) {
+		if (Hammer.PlayerData.players [(int)owner].move ()) {
 
 			moveSelected = null;
 			arrowObj = (GameObject) Instantiate (arrow);

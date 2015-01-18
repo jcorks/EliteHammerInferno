@@ -21,6 +21,7 @@ public class troopBehavior : MonoBehaviour {
 	float heroBonusAttack = 1f;
 	float heroBonusShock = 1f;
 	float heroBonusOther = 1f;
+	float heroBonusMorale = 0f;
 	int fightTurn = 0;
 	
 	public Sprite devil_minion;
@@ -193,7 +194,10 @@ public class troopBehavior : MonoBehaviour {
 		GameObject collidedWith = coll.gameObject;
 		if (collidedWith.tag == "node" && (collidedWith.GetComponent<Node>().playerOwner == troopOwner||collidedWith.GetComponent<Node>().playerOwner == Player.AI)){
 			Debug.Log("node found");
-			
+
+
+
+
 			transform.position=collidedWith.transform.position;
 			garrisoned = collidedWith.GetComponent<Node>();
 			collidedWith.GetComponent<Node>().setOwner(troopOwner);

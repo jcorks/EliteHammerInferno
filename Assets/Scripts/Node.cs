@@ -94,7 +94,9 @@ public class Node : MonoBehaviour {
 
 
 
+	public void activateSpecial() {
 
+	}
 
 
 
@@ -161,7 +163,7 @@ public class Node : MonoBehaviour {
 	void FixedUpdate() {
 
 		// gain Resources for the owner player
-		if (resCount>100 && !besieged) {
+		if (resCount>100) {
 			Hammer.PlayerData.players[(int)playerOwner].Resources += resourceGain;
 			resCount = 0;
 		}
