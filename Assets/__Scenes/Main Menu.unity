@@ -1579,6 +1579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8fae7c11064034389d5a7c3b590da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 1345605583}
   audio: {fileID: 423749809}
 --- !u!1 &797927153
 GameObject:
@@ -2110,7 +2111,6 @@ GameObject:
   - 124: {fileID: 1270541641}
   - 81: {fileID: 1270541640}
   - 114: {fileID: 1270541644}
-  - 95: {fileID: 1270541645}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2184,9 +2184,8 @@ Transform:
   - {fileID: 2009652951}
   - {fileID: 21070738}
   - {fileID: 423749811}
-  - {fileID: 2028853072}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &1270541644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2207,25 +2206,11 @@ MonoBehaviour:
   hell1: {fileID: 1060930004}
   hell2: {fileID: 459848881}
   click: {fileID: 423749810}
-  left1: {fileID: 7400000, guid: 707b6d5f1abf6f1429469539a4d10330, type: 2}
+  anim: {fileID: 1345605583}
+  left1: {fileID: 0}
   right1: {fileID: 0}
   left2: {fileID: 0}
   right2: {fileID: 0}
---- !u!95 &1270541645
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1270541638}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 43a4b5020f1fadf44a90be3cdcd204a2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1302819719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,6 +2322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8fae7c11064034389d5a7c3b590da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 1345605583}
   audio: {fileID: 423749809}
 --- !u!225 &1345605581
 CanvasGroup:
@@ -3091,8 +3077,8 @@ RectTransform:
   - {fileID: 1896438660}
   - {fileID: 707715862}
   - {fileID: 1345605579}
-  m_Father: {fileID: 1270541643}
-  m_RootOrder: 3
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}

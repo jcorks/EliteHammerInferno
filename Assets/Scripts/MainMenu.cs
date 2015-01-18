@@ -18,10 +18,8 @@ public class MainMenu : MonoBehaviour {
 
     public Animator anim;
 
-    public AnimationClip left1;
-    public AnimationClip right1;
-    public AnimationClip left2;
-    public AnimationClip right2;
+    bool player1ready = false;
+    bool player2ready = false;
 
     // total characters
     int totalCharacters = 2;
@@ -32,8 +30,6 @@ public class MainMenu : MonoBehaviour {
     int character1 = 0;
     int character2 = 0;
     
-
-
     public void buttonsound()
     {
         audio.Play();
@@ -118,7 +114,7 @@ public class MainMenu : MonoBehaviour {
 
     void Update()
     {
-        if (Hammer.PlayerData.players[0].left()) {
+        if (Hammer.PlayerData.players[0].left() && !player1ready) {
             anim.SetBool("LeftArrow1", true);
             characters1[character1].Portrait().SetActive(false);
             changeCharacter1(false);
@@ -128,7 +124,7 @@ public class MainMenu : MonoBehaviour {
             
         }
 
-        if (Hammer.PlayerData.players[0].right()) {
+        if (Hammer.PlayerData.players[0].right() && !player1ready) {
             print("right");
             anim.SetBool("RightArrow1", true);
             characters1[character1].Portrait().SetActive(false);
@@ -139,7 +135,7 @@ public class MainMenu : MonoBehaviour {
             
         }
 
-        if (Hammer.PlayerData.players[1].left()) {
+        if (Hammer.PlayerData.players[1].left() && !player2ready) {
             anim.SetBool("LeftArrow2", true);
             characters2[character2].Portrait().SetActive(false);
             changeCharacter2(false);
@@ -149,7 +145,7 @@ public class MainMenu : MonoBehaviour {
 
         }
 
-        if (Hammer.PlayerData.players[1].right()) {
+        if (Hammer.PlayerData.players[1].right() && !player2ready) {
             anim.SetBool("RightArrow2", true);
             characters2[character2].Portrait().SetActive(false);
             changeCharacter2(true);
@@ -159,10 +155,22 @@ public class MainMenu : MonoBehaviour {
 
         }
 
-        if (Hammer.PlayerData.players[0].move()) { 
-            
+        if (Hammer.PlayerData.players[0].move() && !player1ready) {
+            player1ready = true;
+
         }
-        
+
+        if (Hammer.PlayerData.players[1].move() && !player2ready)
+        {
+            player2ready = true;
+
+        }
+
+        if (Hammer.PlayerData.players[0].build() && player1ready)
+        {
+            player1ready = false;
+
+        }
     }
 
     public void quit()
