@@ -11,18 +11,9 @@ public class troopBehavior : MonoBehaviour {
 	public troopBehavior opponent;
 	public bool fighting = false;
 	public Node garrisoned; //tells if the unit is in a province
-	
-	float baseAttack = 5f;
-
-	float priorSpeed = 1f;
-
+	public Hero attached;
+	float priorSpeed = 1;
 	float fightInterval = 0;
-
-	void makeProperty(float mobilized, float mobilizedMorale) {
-		Debug.Log ("mobilized");
-		strength = mobilized;
-		morale = mobilizedMorale;
-	}
 
 	// Use this for initialization
 	void Awake () {
@@ -34,8 +25,13 @@ public class troopBehavior : MonoBehaviour {
 		fightInterval++;
 		//Basic Movement
 		Vector3 pos = transform.position;
-		pos.x += speed * Time.deltaTime;
+		pos += speed * Time.deltaTime;
 		transform.position = pos;
+
+		/*Vector3 speedVec = new Vector3 (0.0f, 0.0f, speed);
+		speedVec = Vector3.Angle (fromNode.transform.position, toNode.transform.position);
+		tranform.position += speedVec;
+*?
 
 		//If there is a fight, update the status every second
 		if (fightInterval == 50) {
@@ -88,7 +84,7 @@ public class troopBehavior : MonoBehaviour {
 			priorSpeed = speed;
 			speed = 0;
 		}
-		if (clash.troopOwner == troopOwner && clash.fighting /*and heading towards same vector*/) {
+		if (clash.troopOwner == troopOwner && clash.speed == 0) {
 			Debug.Log ("merge!");
 			clash.morale = Mathf.Round((morale*strength + clash.morale*clash.strength)/(clash.strength+strength));
 			clash.strength += strength;
