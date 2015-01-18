@@ -23,11 +23,15 @@ public class MainMenu : MonoBehaviour {
     public GameObject player2set;
 
     public AudioSource click;
+    public AudioSource title;
 
     public Animator anim;
 
     bool player1ready = false;
     bool player2ready = false;
+
+    public AudioSource choral;
+    public AudioSource roar;
 
     // total characters
     int totalCharacters = 2;
@@ -61,7 +65,7 @@ public class MainMenu : MonoBehaviour {
 
         characters2[0].setValues(image10, true);
         characters2[1].setValues(image11, false);
-        print(characters2[1].Side());
+
 
 
     }
@@ -131,6 +135,14 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
+    void lockin(bool side) {
+        if (side) {
+            choral.Play();
+        }
+        if (!side) {
+            roar.Play();
+        }
+    }
 
     void Update()
     {
@@ -175,34 +187,96 @@ public class MainMenu : MonoBehaviour {
 
         }
 
-        if (Hammer.PlayerData.players[0].move() && !player1ready) {
+        if (Hammer.PlayerData.players[0].move() && !player1ready && anim.GetBool("character")) {
+
+
             player1ready = true;
+            player2ready = true;
+
+            if (characters1[character1].Side()) {
+                if (characters2[character2].Side()) {
+                    changeCharacter2(true);
+                    characters2[character2prev].Portrait().SetActive(false);
+                    Background(characters2[character2].Side(), 2);
+                    characters2[character2].Portrait().SetActive(true);
+                }
+            }
+
+            if (!characters1[character1].Side())
+            {
+                if (!characters2[character2].Side())
+                {
+                    changeCharacter2(true);
+                    characters2[character2prev].Portrait().SetActive(false);
+                    Background(characters2[character2].Side(), 2);
+                    characters2[character2].Portrait().SetActive(true);
+                }
+            }
+
             player1up.SetActive(false);
             player1set.SetActive(true);
 
-        }
-
-        if (Hammer.PlayerData.players[1].move() && !player2ready)
-        {
-            player2ready = true;
             player2up.SetActive(false);
             player2set.SetActive(true);
 
+            lockin(characters1[character1].Side());
+        }
+
+        if (Hammer.PlayerData.players[1].move() && !player2ready && anim.GetBool("character"))
+        {
+            player2ready = true;
+            player1ready = true;
+
+            if (characters2[character2].Side())
+            {
+                if (characters1[character1].Side())
+                {
+                    changeCharacter1(true);
+                    characters1[character1prev].Portrait().SetActive(false);
+                    Background(characters1[character1].Side(), 2);
+                    characters2[character1].Portrait().SetActive(true);
+                }
+            }
+
+            if (!characters2[character2].Side())
+            {
+                if (!characters1[character1].Side())
+                {
+                    changeCharacter1(true);
+                    characters1[character1prev].Portrait().SetActive(false);
+                    Background(characters1[character1].Side(), 2);
+                    characters2[character1].Portrait().SetActive(true);
+                }
+            }
+
+            player1up.SetActive(false);
+            player1set.SetActive(true);
+
+            player2up.SetActive(false);
+            player2set.SetActive(true);
+
+            lockin(characters2[character2].Side());
         }
 
         if (Hammer.PlayerData.players[0].build() && player1ready)
         {
             player1ready = false;
+            player2ready = false;
             player1up.SetActive(true);
             player1set.SetActive(false);
+            player2up.SetActive(true);
+            player2set.SetActive(false);
 
         }
 
         if (Hammer.PlayerData.players[1].build() && player2ready)
         {
             player2ready = false;
+            player1ready = false;
             player2up.SetActive(true);
             player2set.SetActive(false);
+            player1up.SetActive(true);
+            player1set.SetActive(false);
 
         }
 
@@ -221,8 +295,15 @@ public class MainMenu : MonoBehaviour {
                 Hammer.PlayerData.players[1].hero = Hero.Hero_2;
             }
 
-            Application.LoadLevel("MainGame");
+            StartCoroutine("wait");
         }
+    }
+
+    IEnumerator wait() {
+        print(Hammer.PlayerData.players[0].hero);
+        print(Hammer.PlayerData.players[1].hero);
+        yield return new WaitForSeconds(3.5f);
+        Application.LoadLevel("Tutorial");
     }
 
     public void quit()
