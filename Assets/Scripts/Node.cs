@@ -29,9 +29,11 @@ public class Node : MonoBehaviour {
 			GameObject troopObject = Instantiate (troopsPrefab) as GameObject;
 			troop = troopObject.GetComponent<troopBehavior>();
 			troop.transform.position = transform.position;
+			troop.transform.localScale  = new Vector3 (4.0f, 4.0f, 4.0f);
 			troop.garrisoned = this;
 			troop.attached = Hero.None; 
 			troop.speed = 0;
+			troop.setOwner(playerOwner);
 		}
 		for (int i = 0; i < numNewUnits; ++i) {
 			if (Hammer.PlayerData.players[(int)playerOwner].Resources < troopCost) return;

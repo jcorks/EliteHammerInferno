@@ -42,7 +42,7 @@ public class NodeCursor : MonoBehaviour {
 			Debug.DrawLine(currentNode.transform.position, nodes[i].transform.position, new Color(255, 255, 0), 1, false);
 
 			float thisHeight = helper_getThisDist(dir, nodes[i]);
-			if (helper_compareDist(dir, thisHeight,bestHeight)) {
+			if (nodes[i].playerOwner == owner && helper_compareDist(dir, thisHeight,bestHeight)) {
 				bestIndex = i;
 				bestHeight = thisHeight;
 			}
@@ -96,13 +96,13 @@ public class NodeCursor : MonoBehaviour {
 
 
 
-	public void setType(Player p, Hero h) {
+	public void setType(Player p) {
 		owner = p;
-		hero = h;
-		if (h == Hero.Hero_1) {
+		hero = Hammer.PlayerData.players [(int)p].hero;
+		if (hero == Hero.Hero_1) {
 			print ("Set Hero1");	
 			GetComponent<SpriteRenderer>().sprite = angelTex;
-		} else if (h == Hero.Hero_2) {
+		} else if (hero == Hero.Hero_2) {
 			print ("Set Hero2");
 			GetComponent<SpriteRenderer>().sprite = devilTex;
 		}
@@ -118,7 +118,7 @@ public class NodeCursor : MonoBehaviour {
 	void Update () {
 		if (currentNode)
 		easeTo (currentNode.transform.position);
-		if (Input.GetKeyDown(KeyCode.L)) {
+		if (Hammer.PlayerData.players[(int)owner].build ()) {
 			Debug.Log ("unit produced");
 			currentNode.buildUnits (500);
 		}

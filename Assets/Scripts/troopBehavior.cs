@@ -12,7 +12,11 @@ public class troopBehavior : MonoBehaviour {
 	public bool fighting = false;
 	public Node garrisoned; //tells if the unit is in a province
 	public Hero attached; //tells if a hero unit is attached
-	public Sprite minion; 
+
+
+	public Sprite devil_minion;
+	public Sprite angel_minion;
+
 	float priorSpeed = 1;
 	float fightInterval = 0;
 
@@ -105,6 +109,15 @@ public class troopBehavior : MonoBehaviour {
 		}
 
 	}	
+
+	public void setOwner(Player p) {
+		troopOwner = p;
+		if (Hammer.PlayerData.players [(int)p].hero == Hero.Hero_1) {
+			GetComponent<SpriteRenderer>().sprite = angel_minion;
+		} else if (Hammer.PlayerData.players [(int)p].hero == Hero.Hero_2) {
+			GetComponent<SpriteRenderer>().sprite = devil_minion;
+		}
+	}
 
 	void OnTriggerEnter(Collider coll){
 		Debug.Log (coll.gameObject);

@@ -20,7 +20,15 @@ public class NodeManager : MonoBehaviour {
 
 
 	void Awake() {
+
+		//TODO remove
+
+
 		Hammer.PlayerData.init ();
+
+		Hammer.PlayerData.players [0].hero = Hero.Hero_1;
+		Hammer.PlayerData.players [1].hero = Hero.Hero_2;
+
 		generateNodes ();
 
 
@@ -49,7 +57,7 @@ public class NodeManager : MonoBehaviour {
 
 	void processPlayer(Player p) {
 		if (Hammer.PlayerData.players[(int)p].up()) {
-			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.UP);
+			playerCursors[(int)p].GetComponent<NodeCursor>().goToNode(CursorDirection.UP);	
 		}
 
 		if (Hammer.PlayerData.players[(int)p].down()) {
@@ -169,8 +177,8 @@ public class NodeManager : MonoBehaviour {
 		cNode.connectNode (rightMostNode);
 		cNode.setOwner (Player.PLAYER_2);
 		playerCursors[1] = (GameObject)Instantiate (NodeCursorObj);
-		playerCursors[1].GetComponent<NodeCursor> ().setNode(rightMostNode.GetComponent<Node>());
-		playerCursors[1].GetComponent<NodeCursor> ().setType (Player.PLAYER_2, Hero.Hero_2);
+		playerCursors[1].GetComponent<NodeCursor> ().setNode(cNode);
+		playerCursors[1].GetComponent<NodeCursor> ().setType (Player.PLAYER_2);
 
 		
 		newObj = (GameObject)Instantiate(NodeObject);
@@ -182,8 +190,8 @@ public class NodeManager : MonoBehaviour {
 		cNode.connectNode (leftMostNode);
 		cNode.setOwner (Player.PLAYER_1);
 		playerCursors[0] = (GameObject)Instantiate (NodeCursorObj);
-		playerCursors[0].GetComponent<NodeCursor> ().setNode(leftMostNode.GetComponent<Node>());
-		playerCursors[0].GetComponent<NodeCursor> ().setType (Player.PLAYER_1, Hero.Hero_1);
+		playerCursors[0].GetComponent<NodeCursor> ().setNode(cNode);
+		playerCursors[0].GetComponent<NodeCursor> ().setType (Player.PLAYER_1);
 		
 
 		
