@@ -110,10 +110,11 @@ public class troopBehavior : MonoBehaviour {
 
 		//Find out what hit this troop
 		GameObject collidedWith = coll.gameObject;
-		if (collidedWith.tag == "node" && collidedWith.GetComponent<Node>().playerOwner == null) {
+		if (collidedWith.tag == "node" && (collidedWith.GetComponent<Node>().playerOwner == troopOwner||collidedWith.GetComponent<Node>().playerOwner == Player.AI)){
 			Debug.Log("node found");
 			transform.position=collidedWith.transform.position;
 			garrisoned = collidedWith.GetComponent<Node>();
+			collidedWith.GetComponent<Node>().setOwner(troopOwner);
 			Debug.Log("node found");
 
 			speed = 0;

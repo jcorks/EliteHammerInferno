@@ -1,0 +1,178 @@
+newmtl wall_dent
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 0.6 0.6 0.6
+Km 0
+map_Kd /Maps/wall_dent.jpg
+
+newmtl tower2
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/tower_base_color.jpg
+
+newmtl arch
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/tower_base_color.jpg
+
+newmtl tower
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/tower_base_color.jpg
+
+newmtl roof_ends
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/tower_base_color.jpg
+
+newmtl ledge
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/tower_base_color.jpg
+
+newmtl ceiling
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/tower_base_color.jpg
+
+newmtl base
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/tower_base_color.jpg
+
+newmtl door
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 0.6 0.6 0.6
+Km 0
+map_Kd /Maps/door.jpg
+
+newmtl def_surf_mat
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 0.6 0.6 0.6
+Km 0
+map_Kd /Maps/door.jpg
+
+newmtl roof_cone
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 0.6 0.6 0.6
+Km 0
+map_Kd /Maps/roof_cone.jpg
+
+newmtl roof
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 0.6 0.6 0.6
+Km 0
+map_Kd /Maps/roof.jpg
+
+newmtl def_surf_mat_column
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/column_color.jpg
+map_Ks /Maps/column_specular.png
+map_Bump /Maps/column_nmap.png
+
+newmtl def_surf_mat_column_(2)
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/column_color.jpg
+map_Ks /Maps/column_specular.png
+map_Bump /Maps/column_nmap.png
+
+newmtl def_surf_mat_column_(3)
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/column_color.jpg
+map_Ks /Maps/column_specular.png
+map_Bump /Maps/column_nmap.png
+
+newmtl def_surf_mat_column_(4)
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/column_color.jpg
+map_Ks /Maps/column_specular.png
+map_Bump /Maps/column_nmap.png
+
+newmtl form
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 0.6 0.6 0.6
+Km 0
+map_Kd /Maps/form01.jpg
+
