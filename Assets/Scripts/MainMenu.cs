@@ -16,10 +16,12 @@ public class MainMenu : MonoBehaviour {
 
     public AudioSource click;
 
-    public AnimationState left1;
-    public Animation anim;
-    public Animation left2;
-    public Animation right2;
+    public Animator anim;
+
+    public AnimationClip left1;
+    public AnimationClip right1;
+    public AnimationClip left2;
+    public AnimationClip right2;
 
     // total characters
     int totalCharacters = 2;
@@ -113,11 +115,11 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
+
     void Update()
     {
         if (Hammer.PlayerData.players[0].left()) {
-            print("left");
-            
+            anim.SetBool("LeftArrow1", true);
             characters1[character1].Portrait().SetActive(false);
             changeCharacter1(false);
             click.Play();
@@ -128,7 +130,7 @@ public class MainMenu : MonoBehaviour {
 
         if (Hammer.PlayerData.players[0].right()) {
             print("right");
-            //animation.Play("right1");
+            anim.SetBool("RightArrow1", true);
             characters1[character1].Portrait().SetActive(false);
             changeCharacter1(true);
             click.Play();
@@ -138,7 +140,7 @@ public class MainMenu : MonoBehaviour {
         }
 
         if (Hammer.PlayerData.players[1].left()) {
-            //animation.Play("left2");
+            anim.SetBool("LeftArrow2", true);
             characters2[character2].Portrait().SetActive(false);
             changeCharacter2(false);
             click.Play();
@@ -148,7 +150,7 @@ public class MainMenu : MonoBehaviour {
         }
 
         if (Hammer.PlayerData.players[1].right()) {
-            //animation.Play("right2");
+            anim.SetBool("RightArrow2", true);
             characters2[character2].Portrait().SetActive(false);
             changeCharacter2(true);
             click.Play();
@@ -160,7 +162,7 @@ public class MainMenu : MonoBehaviour {
         if (Hammer.PlayerData.players[0].move()) { 
             
         }
-
+        
     }
 
     public void quit()

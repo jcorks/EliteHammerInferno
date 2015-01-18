@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Menu : MonoBehaviour {
 
+
+    public Animator anim;
     public GameObject audio;
     private Animator _animator;
     private CanvasGroup _canvasgroup;
@@ -17,6 +19,26 @@ public class Menu : MonoBehaviour {
     {
         audio.SetActive(true);
     }
+
+    public void LeftArrow1()
+    {
+        anim.SetBool("LeftArrow1", false);
+    }
+
+    public void RightArrow1()
+    {
+        anim.SetBool("RightArrow1", false);
+    }
+
+    public void LeftArrow2()
+    {
+        anim.SetBool("LeftArrow2", false);
+    }
+    public void RightArrow2()
+    {
+        anim.SetBool("RightArrow2", false);
+    }
+
     public void Awake()
     {
         _animator = GetComponent<Animator>();
