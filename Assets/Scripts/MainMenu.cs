@@ -4,15 +4,23 @@ using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour {
 
+    // character sprites
     public GameObject image00;
     public GameObject image01;
     public GameObject image10;
     public GameObject image11;
 
+    // backgrounds
     public GameObject heaven1;
     public GameObject heaven2;
     public GameObject hell1;
     public GameObject hell2;
+
+    // ready up images
+    public GameObject player1up;
+    public GameObject player2up;
+    public GameObject player1set;
+    public GameObject player2set;
 
     public AudioSource click;
 
@@ -98,13 +106,11 @@ public class MainMenu : MonoBehaviour {
             }
         }
         else {
-            if (heaven)
-            {
+            if (heaven) {
                 heaven2.SetActive(true);
                 hell2.SetActive(false);
             }
-            else
-            {
+            else {
                 heaven2.SetActive(false);
                 hell2.SetActive(true);
             }
@@ -157,18 +163,32 @@ public class MainMenu : MonoBehaviour {
 
         if (Hammer.PlayerData.players[0].move() && !player1ready) {
             player1ready = true;
+            player1up.SetActive(false);
+            player1set.SetActive(true);
 
         }
 
         if (Hammer.PlayerData.players[1].move() && !player2ready)
         {
             player2ready = true;
+            player2up.SetActive(false);
+            player2set.SetActive(true);
 
         }
 
         if (Hammer.PlayerData.players[0].build() && player1ready)
         {
             player1ready = false;
+            player1up.SetActive(true);
+            player1set.SetActive(false);
+
+        }
+
+        if (Hammer.PlayerData.players[1].build() && player2ready)
+        {
+            player2ready = false;
+            player2up.SetActive(true);
+            player2set.SetActive(false);
 
         }
     }
