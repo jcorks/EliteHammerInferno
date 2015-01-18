@@ -7,7 +7,7 @@ public class Node : MonoBehaviour {
 	private List<Node> neighbors;
 	private List<Pathway> neighborPaths;
 	private int resCount = 0;
-	private int resourceGain = 10; // mad gains
+	private int resourceGain = 100; // mad gains
 	private bool heroFirst = false;
 
 	public troopBehavior troop = null;
@@ -32,12 +32,13 @@ public class Node : MonoBehaviour {
 				troop.attached = Hero.Hero_1;
 				heroFirst = true;
 			}*/
+			Debug.Log ("unit made");
 			GameObject troopObject = Instantiate (troopsPrefab) as GameObject;
 			troop = troopObject.GetComponent<troopBehavior>();
 			troop.transform.position = transform.position;
-			troop.transform.localScale  = new Vector3 (1.0f, 1.0f, 1.0f);
+			troop.transform.localScale  = new Vector3 (2.0f, 2.0f, 2.0f);
 			troop.garrisoned = this;
-			troop.attached = Hero.Hero_1;
+			troop.attached = Hero.None;
 			troop.speed = 0;
 			troop.setOwner(playerOwner);
 		}
@@ -185,12 +186,14 @@ public class Node : MonoBehaviour {
 		foreach (Node n in neighbors) {
 			if (n.GetInstanceID() == dest.GetInstanceID()) {
 				found = true;
+				print("");
+
 				directionVector = n.gameObject.transform.position - this.gameObject.transform.position; 
 				//troop.gameObject.transform.Rotate (new Vector3(Vector3.Angle(new Vector3(1f, 0f, 0f),
 				                                                            // directionVector), 0f ,0f));
-				//troop.gameObject.transform.Rotate (0f, 0f ,0f);
+				troop.gameObject.transform.Rotate (0f, 0f ,0f);
 				troop.angleVector = directionVector;
-				troop.speed = 0.007f;
+				troop.speed = 0.005f;
 				dest.troop = troop;
 				dest.troop.garrisoned = null;
 				troop = null;
