@@ -31,10 +31,15 @@ public class troopBehavior : MonoBehaviour {
 	public GameObject statusPrefab;
 	private GameObject statusObj;
 	public GameObject statusBoxPrefab;
+
+
+
+
 	// Use this for initialization
 	void Awake () {
 		//makeProperty (1000f, 1000f);
 		statusObj = (GameObject)Instantiate (statusPrefab);
+;
 	}
 
 	void heroAbility(Hero attached) {
@@ -207,7 +212,13 @@ public class troopBehavior : MonoBehaviour {
 			Debug.Log("node found");
 
 
+			if (collidedWith.GetComponent<Node>().isBase () && collidedWith.GetComponent<Node>().playerOwner != troopOwner) {
+				if (Hammer.PlayerData.players[(int)troopOwner].getHero () == Hero.Hero_1)
+					Application.LoadLevel("HeavenWins");
+				else 
+					Application.LoadLevel ("HellWins");
 
+			}
 
 			transform.position=collidedWith.transform.position;
 			garrisoned = collidedWith.GetComponent<Node>();

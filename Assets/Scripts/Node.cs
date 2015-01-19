@@ -160,6 +160,10 @@ public class Node : MonoBehaviour {
 		foreach (Node n in neighbors) {
 			Debug.DrawLine (transform.position, n.transform.position, new Color(255, 0, 0, 35), 1);
 		}
+
+
+
+
 	}
 
 	void FixedUpdate() {
@@ -200,6 +204,9 @@ public class Node : MonoBehaviour {
 		if (!found) {
 			print("THIS SHOULDNT HAPPEN");
 		}
+
+
+
 
 	}
 
