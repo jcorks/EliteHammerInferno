@@ -300,8 +300,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     IEnumerator wait() {
-        print(Hammer.PlayerData.players[0].hero);
-        print(Hammer.PlayerData.players[1].hero);
+
         yield return new WaitForSeconds(3.5f);
         Application.LoadLevel("Tutorial");
     }
