@@ -27,7 +27,7 @@ public class Node : MonoBehaviour {
 	// Produces units locally by spending resources from the pool
 	public void buildUnits (int numNewUnits) {
 		// && Hammer.PlayerData.players[(int)playerOwner].Resources > 0
-		if (troop == null) {
+		if (troop == null && Hammer.PlayerData.players[(int)playerOwner].Resources > 0) {
 			/*if (heroFirst == false) {
 				troop.attached = Hero.Hero_1;
 				heroFirst = true;
@@ -37,6 +37,7 @@ public class Node : MonoBehaviour {
 			troop.transform.position = transform.position;
 			troop.transform.localScale  = new Vector3 (1.0f, 1.0f, 1.0f);
 			troop.garrisoned = this;
+			troop.attached = Hero.Hero_1;
 			troop.speed = 0;
 			troop.setOwner(playerOwner);
 		}
