@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class NodeManager : MonoBehaviour {
 	private float nodeSpread			=8.7f; 		// Total range of the map
@@ -14,8 +15,12 @@ public class NodeManager : MonoBehaviour {
 	public GameObject NodeObject;
 	public GameObject NodeCursorObj;
 	private GameObject[] playerCursors = new GameObject[5];
+	public GameObject textHudPrefab;
 
-
+	public GameObject p1base;
+	public GameObject p2base;
+	private GameObject p1Text;
+	private GameObject p2Text;
 
 
 
@@ -29,6 +34,14 @@ public class NodeManager : MonoBehaviour {
 		Hammer.PlayerData.players [0].setHero (Hero.Hero_1);
 		Hammer.PlayerData.players [1].setHero (Hero.Hero_2);
 
+
+
+		p1Text = (GameObject)Instantiate (p1base);
+		p2Text = (GameObject)Instantiate (p2base);
+
+
+
+		
 		generateNodes ();
 
 
@@ -42,15 +55,23 @@ public class NodeManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		p1base.GetComponent<TextMesh> ().text = ""; 
+		p2base.GetComponent<TextMesh> ().text = ""; 
 	}
-	
+
+	void FixedUpdate() {
+
+	}
+
 	// Update is called once per frame
 	void Update () {
 		processPlayer (Player.PLAYER_1);
 		processPlayer (Player.PLAYER_2);
 		//processPlayer (Player.PLAYER_3);
 		//processPlayer (Player.PLAYER_4);
+
+		
+
 	}
 
 
