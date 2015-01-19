@@ -30,8 +30,6 @@ public class troopBehavior : MonoBehaviour {
 	public GameObject statusPrefab;
 	private GameObject statusObj;
 	public GameObject statusBoxPrefab;
->>>>>>> origin/master
-	
 	// Use this for initialization
 	void Awake () {
 		//makeProperty (1000f, 1000f);
