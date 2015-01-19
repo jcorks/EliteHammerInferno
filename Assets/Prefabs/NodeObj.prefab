@@ -84,8 +84,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 6.29081678, z: 2}
-  m_Center: {x: 0, y: 3.14459348, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: .610000014, z: 0}
 --- !u!114 &11446536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c55da7f01a5249f46871d61bb6003905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  troop: {fileID: 0}
   troopsPrefab: {fileID: 185228, guid: ca5253ea6544b5641bafeb8f13f2bbe1, type: 2}
   passiveBonusAttack: 0
   passiveBonusDefense: 0

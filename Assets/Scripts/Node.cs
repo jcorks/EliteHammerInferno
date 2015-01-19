@@ -186,8 +186,6 @@ public class Node : MonoBehaviour {
 		foreach (Node n in neighbors) {
 			if (n.GetInstanceID() == dest.GetInstanceID()) {
 				found = true;
-				print("");
-
 				directionVector = n.gameObject.transform.position - this.gameObject.transform.position; 
 				//troop.gameObject.transform.Rotate (new Vector3(Vector3.Angle(new Vector3(1f, 0f, 0f),
 				                                                            // directionVector), 0f ,0f));
