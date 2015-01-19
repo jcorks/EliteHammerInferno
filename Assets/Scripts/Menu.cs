@@ -39,6 +39,11 @@ public class Menu : MonoBehaviour {
         anim.SetBool("RightArrow2", false);
     }
 
+    public void character()
+    {
+        anim.SetBool("character", true);
+    }
+
     public void Awake()
     {
         _animator = GetComponent<Animator>();

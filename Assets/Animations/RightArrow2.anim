@@ -26,15 +26,15 @@ AnimationClip:
         value: {x: 1.20000005, y: 1.20000005, z: 1}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 131693824
+        tangentMode: 1378775653
       - time: .166666672
         value: {x: 1, y: 1, z: 1}
         inSlope: {x: -2.40000057, y: -2.40000057, z: 0}
         outSlope: {x: -2.40000057, y: -2.40000057, z: 0}
-        tangentMode: 84
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-    path: RightSide/Portrait/RightArrow
+    path: RightSide/Portrait/arrowright
   m_FloatCurves:
   - curve:
       serializedVersion: 2
@@ -85,7 +85,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Color.b
-    path: RightSide/Portrait/RightArrow
+    path: RightSide/Portrait/arrowright
     classID: 114
     script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_PPtrCurves: []
@@ -96,13 +96,13 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
-    - path: 2347437298
+    - path: 4243467812
       attribute: 3
       script: {fileID: 0}
       classID: 4
       customType: 0
       isPPtrCurve: 0
-    - path: 2347437298
+    - path: 4243467812
       attribute: 2334886179
       script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
       classID: 114
@@ -188,7 +188,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.x
-    path: RightSide/Portrait/RightArrow
+    path: RightSide/Portrait/arrowright
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -212,7 +212,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.y
-    path: RightSide/Portrait/RightArrow
+    path: RightSide/Portrait/arrowright
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -226,7 +226,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.z
-    path: RightSide/Portrait/RightArrow
+    path: RightSide/Portrait/arrowright
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -250,7 +250,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Color.b
-    path: RightSide/Portrait/RightArrow
+    path: RightSide/Portrait/arrowright
     classID: 114
     script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_EulerEditorCurves: []
