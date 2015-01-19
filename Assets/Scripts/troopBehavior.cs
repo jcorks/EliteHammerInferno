@@ -6,14 +6,16 @@ public class troopBehavior : MonoBehaviour {
 
 	public float speed;
 	public float strength;
-	public float morale;
+	public float morale = 100.0f;
 	public Player troopOwner;
 	public troopBehavior opponent;
 	public bool fighting = false;
 	public Node garrisoned; //tells if the unit is in a province
 	public Hero attached; //tells if a hero unit is attached
 	public Sprite minion; 
+
 	public Vector3 angleVector = new Vector3(0f,0f,0f);
+
 	float priorSpeed = 1f;
 	float fightInterval = 0f;
 	float heroBonusAttack = 1f;
@@ -25,10 +27,15 @@ public class troopBehavior : MonoBehaviour {
 	public Sprite angel_minion;
 	public Sprite hero_1;
 	public Sprite hero_2;
+	public GameObject statusPrefab;
+	private GameObject statusObj;
+	public GameObject statusBoxPrefab;
+>>>>>>> origin/master
 	
 	// Use this for initialization
 	void Awake () {
 		//makeProperty (1000f, 1000f);
+		statusObj = (GameObject)Instantiate (statusPrefab);
 	}
 
 	void heroAbility(Hero attached) {
@@ -56,8 +63,26 @@ public class troopBehavior : MonoBehaviour {
 		                    + morale*moraleModifier * Random.Range(randMin, randMax)+other);
 	}
 
+	void Update() {
+		statusObj.transform.position = transform.position + new Vector3(0.0f, .4f, -.4f);
+		statusObj.GetComponent<TextMesh> ().text = "Units: " + strength.ToString ();
+		statusObj.GetComponent<TroopStatus> ().setMorale (morale);
+	}
 
-	// Update is called once per frame
+
+	/*void heroCombat (Hero attached, int value){
+		if (attached == Hero.Hero_1) {
+			value = value*1.2;
+		}
+	}
+
+	void heroPassive (Hero attached, int value) {
+		if (attached == Hero.Hero_1) {
+			value = va0.1;
+		}
+	}*/
+	
+		// Update is called once per frame
 	void FixedUpdate() {
 		fightInterval++;
 		//Basic Movement
@@ -150,11 +175,15 @@ public class troopBehavior : MonoBehaviour {
 
 	}	
 
+	void OnDestroy() {
+		Destroy (statusObj);
+	}
+
 	public void setOwner(Player p) {
 		troopOwner = p;
-		if (Hammer.PlayerData.players [(int)p].hero == Hero.Hero_1) {
+		if (Hammer.PlayerData.players [(int)p].getHero () == Hero.Hero_1) {
 			GetComponent<SpriteRenderer>().sprite = angel_minion;
-		} else if (Hammer.PlayerData.players [(int)p].hero == Hero.Hero_2) {
+		} else if (Hammer.PlayerData.players [(int)p].getHero () == Hero.Hero_2) {
 			GetComponent<SpriteRenderer>().sprite = devil_minion;
 		}
 	}

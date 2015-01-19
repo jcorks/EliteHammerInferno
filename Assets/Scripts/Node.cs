@@ -194,7 +194,7 @@ public class Node : MonoBehaviour {
 		if (!found) {
 			print("THIS SHOULDNT HAPPEN");
 		}
-		//troop.transform.position = dest.transform.position;
+
 	}
 
 }

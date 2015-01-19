@@ -46,7 +46,7 @@ public class NodeCursor : MonoBehaviour {
 		float bestHeight = helper_getCurrentPlacement(dir);
 		int bestIndex = -1;
 		for (int i = 0; i < nodes.Count; ++i) {
-			
+
 			
 			Debug.DrawLine(currentNode.transform.position, nodes[i].transform.position, new Color(255, 255, 0), 1, false);
 			
@@ -112,7 +112,7 @@ public class NodeCursor : MonoBehaviour {
 
 	public void setType(Player p) {
 		owner = p;
-		hero = Hammer.PlayerData.players [(int)p].hero;
+		hero = Hammer.PlayerData.players [(int)p].getHero ();
 		if (hero == Hero.Hero_1) {
 			print ("Set Hero1");	
 			GetComponent<SpriteRenderer>().sprite = angelTex;

@@ -4,15 +4,23 @@ using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour {
 
+    // character sprites
     public GameObject image00;
     public GameObject image01;
     public GameObject image10;
     public GameObject image11;
 
+    // backgrounds
     public GameObject heaven1;
     public GameObject heaven2;
     public GameObject hell1;
     public GameObject hell2;
+
+    // ready up images
+    public GameObject player1up;
+    public GameObject player2up;
+    public GameObject player1set;
+    public GameObject player2set;
 
     public AudioSource click;
 
@@ -28,7 +36,9 @@ public class MainMenu : MonoBehaviour {
     public List<Character> characters2 = new List<Character>();
 
     int character1 = 0;
+    int character1prev;
     int character2 = 0;
+    int character2prev;
     
     public void buttonsound()
     {
@@ -37,6 +47,8 @@ public class MainMenu : MonoBehaviour {
 
     void Start()
     {
+        character1prev = totalCharacters - 1;
+        character2prev = totalCharacters - 1;
         Hammer.PlayerData.init();
 
         for(int i = 0; i < totalCharacters; i++) {
@@ -49,6 +61,7 @@ public class MainMenu : MonoBehaviour {
 
         characters2[0].setValues(image10, true);
         characters2[1].setValues(image11, false);
+        print(characters2[1].Side());
 
 
     }
@@ -56,9 +69,11 @@ public class MainMenu : MonoBehaviour {
     void changeCharacter1(bool change)
     {
         if (change) {
+            character1prev = character1;
             character1++;
         }
-        else {
+        else if(!change) {
+            character1prev = character1;
             character1--;
         }
         if (character1 > totalCharacters - 1 ) {
@@ -71,10 +86,17 @@ public class MainMenu : MonoBehaviour {
 
     void changeCharacter2(bool change)
     {
+        print("START " + character2);
+        print("PREV " + character2prev);
+        print(characters2[0].Side());
+        print(characters2[1].Side());
+
         if (change) {
+            character2prev = character2;
             character2++;
         }
-        else {
+        else if (!change) {
+            character2prev = character2;
             character2--;
         }
         if (character2 > totalCharacters - 1) {
@@ -98,13 +120,11 @@ public class MainMenu : MonoBehaviour {
             }
         }
         else {
-            if (heaven)
-            {
+            if (heaven) {
                 heaven2.SetActive(true);
                 hell2.SetActive(false);
             }
-            else
-            {
+            else {
                 heaven2.SetActive(false);
                 hell2.SetActive(true);
             }
@@ -116,19 +136,19 @@ public class MainMenu : MonoBehaviour {
     {
         if (Hammer.PlayerData.players[0].left() && !player1ready) {
             anim.SetBool("LeftArrow1", true);
-            characters1[character1].Portrait().SetActive(false);
             changeCharacter1(false);
+            characters1[character1prev].Portrait().SetActive(false);
             click.Play();
             Background(characters1[character1].Side(), 1);
             characters1[character1].Portrait().SetActive(true);
             
+            
         }
 
         if (Hammer.PlayerData.players[0].right() && !player1ready) {
-            print("right");
             anim.SetBool("RightArrow1", true);
-            characters1[character1].Portrait().SetActive(false);
             changeCharacter1(true);
+            characters1[character1prev].Portrait().SetActive(false);
             click.Play();
             Background(characters1[character1].Side(), 1);
             characters1[character1].Portrait().SetActive(true);
@@ -137,8 +157,8 @@ public class MainMenu : MonoBehaviour {
 
         if (Hammer.PlayerData.players[1].left() && !player2ready) {
             anim.SetBool("LeftArrow2", true);
-            characters2[character2].Portrait().SetActive(false);
-            changeCharacter2(false);
+            changeCharacter2(true);
+            characters2[character2prev].Portrait().SetActive(false);
             click.Play();
             Background(characters2[character2].Side(), 2);
             characters2[character2].Portrait().SetActive(true);
@@ -147,8 +167,8 @@ public class MainMenu : MonoBehaviour {
 
         if (Hammer.PlayerData.players[1].right() && !player2ready) {
             anim.SetBool("RightArrow2", true);
-            characters2[character2].Portrait().SetActive(false);
             changeCharacter2(true);
+            characters2[character2prev].Portrait().SetActive(false);
             click.Play();
             Background(characters2[character2].Side(), 2);
             characters2[character2].Portrait().SetActive(true);
@@ -157,19 +177,51 @@ public class MainMenu : MonoBehaviour {
 
         if (Hammer.PlayerData.players[0].move() && !player1ready) {
             player1ready = true;
+            player1up.SetActive(false);
+            player1set.SetActive(true);
 
         }
 
         if (Hammer.PlayerData.players[1].move() && !player2ready)
         {
             player2ready = true;
+            player2up.SetActive(false);
+            player2set.SetActive(true);
 
         }
 
         if (Hammer.PlayerData.players[0].build() && player1ready)
         {
             player1ready = false;
+            player1up.SetActive(true);
+            player1set.SetActive(false);
 
+        }
+
+        if (Hammer.PlayerData.players[1].build() && player2ready)
+        {
+            player2ready = false;
+            player2up.SetActive(true);
+            player2set.SetActive(false);
+
+        }
+
+        // Set playerdata variables for character
+        if (player1ready && player2ready) {
+            if (characters1[character1].Side() == true) {
+                Hammer.PlayerData.players[0].setHero (Hero.Hero_1);
+            }
+            if (characters1[character1].Side() == false) {
+                Hammer.PlayerData.players[0].setHero (Hero.Hero_2);
+            }
+            if (characters2[character2].Side() == true) {
+                Hammer.PlayerData.players[1].setHero (Hero.Hero_1);
+            }
+            if (characters2[character2].Side() == false) {
+                Hammer.PlayerData.players[1].setHero (Hero.Hero_2);
+            }
+
+            Application.LoadLevel("MainGame");
         }
     }
 

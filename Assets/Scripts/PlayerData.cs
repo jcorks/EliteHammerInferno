@@ -11,14 +11,15 @@ public enum Player {
 };
 
 namespace Hammer {
-public class PlayerData : MonoBehaviour {
+public class PlayerData {
 
 
     public static List<PlayerData> players;
 
     public static void init()
     {
-		print ("Inited");
+		//print ("Inited");
+		
 
         players = new List<PlayerData>();
 
@@ -88,6 +89,8 @@ public class PlayerData : MonoBehaviour {
     // Usage: if( PlayerData.players[i].left() )
     public bool left()
     {
+			if (Input.GetKeyDown (KeyCode.LeftArrow))
+				return true;
 		//	return false;
 		//return (Input.GetAxis(AltHorizontal) < 0 || Input.GetAxis (Horizontal) < 0);
 		
@@ -111,6 +114,8 @@ public class PlayerData : MonoBehaviour {
 
     public bool right()
     {
+			if (Input.GetKeyDown (KeyCode.RightArrow))
+				return true;
 		//	return false;
 		//return (Input.GetAxis(AltHorizontal) > 0 || Input.GetAxis (Horizontal) > 0);
 		
@@ -129,7 +134,8 @@ public class PlayerData : MonoBehaviour {
 
     public bool up()
     {
-	
+			if (Input.GetKeyDown (KeyCode.UpArrow))
+				return true;
 
 		//return (Input.GetAxis(AltVertical) > 0 || Input.GetAxis (Vertical) > 0);
 		
@@ -148,6 +154,8 @@ public class PlayerData : MonoBehaviour {
 
     public bool down()
     {
+			if (Input.GetKeyDown (KeyCode.DownArrow))
+				return true;
 		//	return false;
 		//return (Input.GetAxis(AltVertical) < 0 || Input.GetAxis (Vertical) < 0);
 		
@@ -166,7 +174,10 @@ public class PlayerData : MonoBehaviour {
 
     public bool move()
     {
-		if (Input.GetButton(MoveArmy)) {
+			if (Input.GetKeyDown (KeyCode.W))
+				return true;
+
+			if (Input.GetButton(MoveArmy)) {
 			if (movePressedC > 0) {
 				movePressedC -= Time.deltaTime;
 				return false;
@@ -180,6 +191,10 @@ public class PlayerData : MonoBehaviour {
 
     public bool build()
     {
+			if (Input.GetKeyDown (KeyCode.Q))
+								return true;
+
+
 		if (Input.GetButton(BuildArmy)) {
 			if (buildPressedC > 0) {
 				buildPressedC -= Time.deltaTime;
@@ -233,8 +248,13 @@ public class PlayerData : MonoBehaviour {
     private string BuildArmy;
     private string Power;
 	
-	public Hero hero = Hero.Hero_1;
-
+	private Hero hero = Hero.None;
+		public Hero getHero() {
+			return hero;
+		}
+		public void setHero(Hero h) {
+			hero = h;
+		}
     private int Character;
  
 	private float upPressedC = 0;
