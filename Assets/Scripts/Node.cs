@@ -204,8 +204,8 @@ public class Node : MonoBehaviour {
 				troop.gameObject.transform.Rotate (0f, 0f ,0f);
 				troop.angleVector = directionVector;
 				troop.speed = 0.005f;
-				dest.troop = troop;
-				dest.troop.garrisoned = null;
+				//dest.troop = troop;
+				//dest.troop.garrisoned = null;
 				troop = null;
 			}
 		}

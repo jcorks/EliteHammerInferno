@@ -25,12 +25,7 @@ public class NodeManager : MonoBehaviour {
 	public GameObject NodeObject;
 	public GameObject NodeCursorObj;
 	private GameObject[] playerCursors = new GameObject[5];
-	public GameObject textHudPrefab;
 
-	public GameObject p1base;
-	public GameObject p2base;
-	private GameObject p1Text;
-	private GameObject p2Text;
 
 
 
@@ -45,9 +40,6 @@ public class NodeManager : MonoBehaviour {
 		Hammer.PlayerData.players [1].setHero (Hero.Hero_2);
 
 
-
-		p1Text = (GameObject)Instantiate (p1base);
-		p2Text = (GameObject)Instantiate (p2base);
 
 
 
@@ -65,8 +57,7 @@ public class NodeManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		p1base.GetComponent<TextMesh> ().text = ""; 
-		p2base.GetComponent<TextMesh> ().text = ""; 
+
 	}
 
 	void FixedUpdate() {
@@ -75,6 +66,12 @@ public class NodeManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		GameObject n = GameObject.FindGameObjectWithTag ("P1Res");
+		n.GetComponent<Text> ().text = "Player1 Resources:\n" + Hammer.PlayerData.players [0].Resources.ToString ();
+		n = GameObject.FindGameObjectWithTag ("P2Res");
+		n.GetComponent<Text> ().text = "Player2 Resources:\n" + Hammer.PlayerData.players [1].Resources.ToString ();
+
+
 		processPlayer (Player.PLAYER_1);
 		processPlayer (Player.PLAYER_2);
 		//processPlayer (Player.PLAYER_3);
