@@ -25,6 +25,12 @@ public class NodeCursor : MonoBehaviour {
 	private Pathway lastDirPath; // path way of the last node found via getNext / Pre node
 	public bool isMoving = false;
 
+
+	bool isInrectangle(Vector2 topleft, float w, float h, Vector2 point) {
+		return (point.x >= topleft.x && point.x <= topleft.x + w &&
+						point.y >= topleft.y && point.y <= topleft.y + h);
+	}
+
 	void easeTo(Vector3 v) {
 		Vector3 pos = transform.position;
 		pos = (pos + currentNode.transform.position) / 2.0f;
@@ -130,6 +136,12 @@ public class NodeCursor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		GameObject cam = GameObject.FindGameObjectWithTag ("MainCamera");
+		Vector2 thisView = cam.GetComponent<Camera>().WorldToViewportPoint (transform.position);
+		if (thisView.x < .2f || thisView.x > .8f || thisView.y < .2f || thisView.y > .8f) {
+			cam.transform.position = cam.transform.position + new Vector3(0, .01f, 0);
+		}
+
 
 		Debug.DrawLine (new Vector3 (0.0f, 30.0f, 0.0f), transform.position, new Color(255, 255, 0, 255));
 

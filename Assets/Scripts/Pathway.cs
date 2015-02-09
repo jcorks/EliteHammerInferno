@@ -15,15 +15,28 @@ public class Pathway : MonoBehaviour {
 		begin = begin_;
 		end = end_;
 
+		/*
 		Vector3[] verts = new Vector3[4];
 		Vector2[] texCoords = new Vector2[4];
 		int[] newTris = new int[6];
 
+		Vector3 offset = new Vector3 (.15f, 0.0f, 0.1f);
+		float angle = Vector3.Angle (begin, end);
+		if (begin.x > end.x && begin.z < end.z) {
+			angle += 90f;
+		} else if (begin.x > end.x && begin.z > end.z) {
+			angle += 180f;
+		} else if (begin.x < end.x && begin.z > end.z) {
+			angle += 270f;
+		}
+
+
+		offset = Quaternion.Euler (0, angle, 0) *offset;
 
 		verts [0] = begin;
-		verts [1] = begin + (new Vector3 (.15f, 0.0f, 0.1f));
+		verts [1] = begin + offset;
 		verts [2] = end;
-		verts [3] = end + (new Vector3 (.1f, 0.0f, 0.15f));
+		verts [3] = end + offset;
 
 		texCoords[0] = new Vector2 (0, 0);
 		texCoords[1] = new Vector2 (1, 0);
@@ -44,7 +57,9 @@ public class Pathway : MonoBehaviour {
 		mesh.vertices = verts;
 		mesh.uv = texCoords;
 		mesh.triangles = newTris;
-
+		*/
+		GetComponent<LineRenderer> ().SetPosition (0, begin);
+		GetComponent<LineRenderer> ().SetPosition (1, end);
 	}
 
 	public void setSelected(bool t) {

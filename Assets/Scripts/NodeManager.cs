@@ -14,11 +14,11 @@ public class NodeManager : MonoBehaviour {
 	private float minimumNodeProximity = 1.5f;	
 	*/
 
-	private float nodeSpread			=4.7f; 		// Total range of the map
+	private float nodeSpread			=9f; 		// Total range of the map
 	private int tryCount				=4000;		// Number of nodes to try to make. May vary from actual nodes 
-	private float minTolerance			=1.0f;		// Minimum distance allowable for a node connection
+	private float minTolerance			=1.5f;		// Minimum distance allowable for a node connection
 	private float maxTolerance			=5f;		// Maximum distance allowable for a node connection
-	private int maxNeighbors			=2;			// maximum number of neighbors
+	private int maxNeighbors			=3;			// maximum number of neighbors
 	private float minimumNodeProximity = 3f;	
 
 	private static List<GameObject> nodeObjs; 
@@ -77,7 +77,7 @@ public class NodeManager : MonoBehaviour {
 		//processPlayer (Player.PLAYER_3);
 		//processPlayer (Player.PLAYER_4);
 
-		
+
 
 	}
 
