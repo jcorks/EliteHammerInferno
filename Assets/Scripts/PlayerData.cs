@@ -34,10 +34,7 @@ public class PlayerData {
             AltVertical = "AltVertical1",
             MoveArmy = "MoveArmy1",
             BuildArmy = "BuildArmy1",
-            Power = "Power1",
-			
-
-			
+            Power = "Power1",			
         });
         players.Add(new PlayerData()
         {
@@ -51,7 +48,7 @@ public class PlayerData {
             AltVertical = "AltVertical2",
             MoveArmy = "MoveArmy2",
             BuildArmy = "BuildArmy2",
-            Power = "Power2"
+            Power = "Power2",
         });
 
 		players.Add (new PlayerData ());
