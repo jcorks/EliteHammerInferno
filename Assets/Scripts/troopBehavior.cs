@@ -208,10 +208,9 @@ public class troopBehavior : MonoBehaviour {
 
 		//Find out what hit this troop
 		GameObject collidedWith = coll.gameObject;
+		//IF collided with a node and node is owned by the player
 		if (collidedWith.tag == "node" && (collidedWith.GetComponent<Node>().playerOwner == troopOwner||collidedWith.GetComponent<Node>().playerOwner == Player.AI)){
 			Debug.Log("node found");
-
-
 			if (collidedWith.GetComponent<Node>().isBase () && collidedWith.GetComponent<Node>().playerOwner != troopOwner) {
 				if (Hammer.PlayerData.players[(int)troopOwner].getHero () == Hero.Hero_1)
 					Application.LoadLevel("HeavenWins");
@@ -227,10 +226,11 @@ public class troopBehavior : MonoBehaviour {
 			speed = 0;
 
 		}
-		else {
+		if (collidedWith.tag == "troop") {
 			troopBehavior clash = collidedWith.GetComponent<troopBehavior>();
 			if (!clash) return;
 
+			//If clashing units are not of same faction
 			if (clash.troopOwner != troopOwner) {
 				fighting = true;
 				opponent = clash;
@@ -240,7 +240,9 @@ public class troopBehavior : MonoBehaviour {
 				if (garrisoned) {
 				}
 			}
-			if (clash.troopOwner == this.troopOwner && clash.garrisoned) {
+
+			//If clashing units are of same faction
+			if (clash.troopOwner == this.troopOwner && (clash.garrisoned || clash.fighting)) {
 				Debug.Log ("merge!");
 				clash.morale = Mathf.Round((morale*strength + this.morale*this.strength)/(this.strength+strength));
 				clash.strength += this.strength;
