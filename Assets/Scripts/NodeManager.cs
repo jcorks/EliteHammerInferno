@@ -3,13 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+
 public class NodeManager : MonoBehaviour {
+	/*
 	private float nodeSpread			=8.7f; 		// Total range of the map
 	private int tryCount				=4000;		// Number of nodes to try to make. May vary from actual nodes 
 	private float minTolerance			=1.0f;		// Minimum distance allowable for a node connection
 	private float maxTolerance			=2.4f;		// Maximum distance allowable for a node connection
 	private int maxNeighbors			=4;			// maximum number of neighbors
 	private float minimumNodeProximity = 1.5f;	
+	*/
+
+	private float nodeSpread			=4.7f; 		// Total range of the map
+	private int tryCount				=4000;		// Number of nodes to try to make. May vary from actual nodes 
+	private float minTolerance			=1.0f;		// Minimum distance allowable for a node connection
+	private float maxTolerance			=5f;		// Maximum distance allowable for a node connection
+	private int maxNeighbors			=2;			// maximum number of neighbors
+	private float minimumNodeProximity = 3f;	
 
 	private static List<GameObject> nodeObjs; 
 	public GameObject NodeObject;
