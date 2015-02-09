@@ -107,14 +107,22 @@ public class Node : MonoBehaviour {
 	// Set the player owner
 	public void setOwner(Player p) {
 		playerOwner = p;
+		if (p == Player.PLAYER_1) {
+			GetComponentInChildren<SpriteRenderer>().color = new Color(0, 0, 255, 255);
+		} else {
+			GetComponentInChildren<SpriteRenderer>().color = new Color(255, 0, 0, 255);
+		}
 	}
 
 	public void setResourceGain(int amt) {
 
 		// Rescale based on amount gain
-		transform.localScale += new Vector3 (.2f*(amt / (float)troopCost), 
+
+		/*
+		GetComponentInChildren<SpriteRenderer>().localScale += new Vector3 (.2f*(amt / (float)troopCost), 
 		                                     .2f*(amt / (float)troopCost), 
 		                                     .2f*(amt / (float)troopCost));
+		*/
 
 
 		resourceGain = amt;
@@ -122,7 +130,7 @@ public class Node : MonoBehaviour {
 
 	public void makeBase() {
 		// update visuals
-		transform.localScale = new Vector3 (.7f, .7f, .7f);
+		//transform.localScale = new Vector3 (.7f, .7f, .7f);
 		base_b = true;
 	}
 
