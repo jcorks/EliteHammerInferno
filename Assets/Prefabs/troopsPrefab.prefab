@@ -8,10 +8,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 22401624}
-  - 65: {fileID: 6585228}
   - 114: {fileID: 11432320}
   - 54: {fileID: 5459658}
   - 212: {fileID: 21213108}
+  - 135: {fileID: 13591878}
   m_Layer: 0
   m_Name: troopsPrefab
   m_TagString: troop
@@ -34,18 +34,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!65 &6585228
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185228}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: .400000006, y: .400000006, z: .400000006}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11432320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -58,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -1
-  strength: 200
+  strength: 0
   morale: 100
   troopOwner: 0
   opponent: {fileID: 0}
@@ -73,6 +61,18 @@ MonoBehaviour:
   hero_2: {fileID: 21300000, guid: d348da63a561f274fb6a34f893f2a565, type: 3}
   statusPrefab: {fileID: 170314, guid: db874e16fa24c4245b6a8af1752d8c16, type: 2}
   statusBoxPrefab: {fileID: 0}
+--- !u!135 &13591878
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185228}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .100000001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &21213108
 SpriteRenderer:
   m_ObjectHideFlags: 1
