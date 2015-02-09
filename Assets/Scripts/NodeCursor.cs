@@ -138,7 +138,20 @@ public class NodeCursor : MonoBehaviour {
 
 
 		if (isMoving) {
+			if (currentNode.troop && currentNode.troop.fighting || 
+			    !moveSelected && Hammer.PlayerData.players [(int)owner].move ()) {
+
+				isMoving = false;
+				if (lastDirPath)
+					lastDirPath.setSelected(false);
+
+				Destroy(arrowObj);
+
+				Debug.Log("Cancelled move");
+				return;
+			}
 			handleMove();
+
 			return;
 		}
 
@@ -154,6 +167,8 @@ public class NodeCursor : MonoBehaviour {
 		// Begin move mode
 		if (Hammer.PlayerData.players [(int)owner].move () &&
 		    currentNode.troop) {
+
+
 
 			moveSelected = null;
 			arrowObj = (GameObject) Instantiate (arrow);
