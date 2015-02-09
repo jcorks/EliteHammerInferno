@@ -21,11 +21,15 @@ public class Node : MonoBehaviour {
 	static public int troopCost = 5;
 	public GameObject pathObj;
 
+	private float moveTimer = 0f;
+	private bool moveTime = false;
 
 	/* Unit Management */
 	
 	// Produces units locally by spending resources from the pool
 	public void buildUnits (int numNewUnits) {
+		if (moveTime || (troop && troop.fighting) )
+			return;
 		// && Hammer.PlayerData.players[(int)playerOwner].Resources > 0
 		if (troop == null && Hammer.PlayerData.players[(int)playerOwner].Resources > 0) {
 			/*if (heroFirst == false) {
@@ -47,7 +51,7 @@ public class Node : MonoBehaviour {
 			Hammer.PlayerData.players[(int)playerOwner].Resources -= troopCost;
 			troop.morale = (troop.morale*troop.strength + 100)/(troop.strength+1);
 			troop.strength++;
-			Debug.Log ("unit produced:" + troop.strength);
+			//Debug.Log ("unit produced:" + troop.strength);
 		}
 	}
 
@@ -169,7 +173,13 @@ public class Node : MonoBehaviour {
 			Debug.DrawLine (transform.position, n.transform.position, new Color(255, 0, 0, 35), 1);
 		}
 
-
+		if (moveTime) {
+			moveTimer += Time.deltaTime;
+			if (moveTimer > 2) {
+				moveTime = false;
+				moveTimer = 0f;
+			}
+		}
 
 
 	}
@@ -205,10 +215,11 @@ public class Node : MonoBehaviour {
 				troop.angleVector = directionVector;
 				troop.speed = 0.005f;
 				//dest.troop = troop;
-				//dest.troop.garrisoned = null;
+				troop.garrisoned = null;
 				troop = null;
 			}
 		}
+		moveTime = true;
 		if (!found) {
 			print("THIS SHOULDNT HAPPEN");
 		}

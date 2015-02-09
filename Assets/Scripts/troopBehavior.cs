@@ -209,7 +209,7 @@ public class troopBehavior : MonoBehaviour {
 		//Find out what hit this troop
 		GameObject collidedWith = coll.gameObject;
 		//IF collided with a node and node is owned by the player
-		if (collidedWith.tag == "node" && (collidedWith.GetComponent<Node>().playerOwner == troopOwner||collidedWith.GetComponent<Node>().playerOwner == Player.AI)){
+		if (collidedWith.tag == "node"){
 			Debug.Log("node found");
 			if (collidedWith.GetComponent<Node>().isBase () && collidedWith.GetComponent<Node>().playerOwner != troopOwner) {
 				if (Hammer.PlayerData.players[(int)troopOwner].getHero () == Hero.Hero_1)
@@ -218,9 +218,11 @@ public class troopBehavior : MonoBehaviour {
 					Application.LoadLevel ("HellWins");
 
 			}
-
 			transform.position=collidedWith.transform.position;
 			garrisoned = collidedWith.GetComponent<Node>();
+			garrisoned.troop = this; 
+			Debug.Log(garrisoned);
+			Debug.Log(garrisoned.troop);
 			collidedWith.GetComponent<Node>().setOwner(troopOwner);
 			transform.Rotate (0f, 0f ,0f);
 			speed = 0;
