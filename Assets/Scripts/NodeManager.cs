@@ -196,7 +196,7 @@ public class NodeManager : MonoBehaviour {
 			int dist = (int)(Vector3.Distance (nodeObjs[i].transform.position, origin));
 			
 			nodeObjs[i].GetComponent<Node>().
-				setResourceGain((int)(nodeSpread/2.0 - dist)); 
+				setResourceGain(100); 
 		}
 
 
