@@ -167,7 +167,7 @@ public class NodeCursor : MonoBehaviour {
 
 
 
-		if (Hammer.PlayerData.players[(int)owner].build () || Input.GetKeyDown(KeyCode.A) ) {
+		if (Hammer.PlayerData.players[(int)owner].build () ) {
 			Debug.Log ("unit produced");
 			currentNode.buildUnits (100);
 		}

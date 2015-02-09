@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public enum Player {
 	PLAYER_1,	
 	PLAYER_2,
-	PLAYER_3,
-	PLAYER_4,
 	AI
 };
 
@@ -26,6 +24,7 @@ public class PlayerData {
         // initialize all 4 controllers
         players.Add(new PlayerData()
         {
+			playerNum = 1,
             Resources = 0,
             Character = 0,
             TotalResources = 0,
@@ -42,6 +41,7 @@ public class PlayerData {
         });
         players.Add(new PlayerData()
         {
+			playerNum =2,
             Resources = 0,
             Character = 0,
             TotalResources = 0,
@@ -53,32 +53,6 @@ public class PlayerData {
             BuildArmy = "BuildArmy2",
             Power = "Power2"
         });
-        players.Add(new PlayerData()
-        {
-            Resources = 0,
-            Character = 0,
-            TotalResources = 0,
-            Horizontal = "Horizontal3",
-            Vertical = "Vertical3",
-            AltHorizontal = "AltHorizontal3",
-            AltVertical = "AltVertical3",
-            MoveArmy = "MoveArmy3",
-            BuildArmy = "BuildArmy3",
-            Power = "Power3"
-        });
-        players.Add(new PlayerData()
-        {
-            Resources = 0,
-            Character = 0,
-            TotalResources = 0,
-            Horizontal = "Horizontal4",
-            Vertical = "Vertical4",
-            AltHorizontal = "AltHorizontal4",
-            AltVertical = "AltVertical4",
-            MoveArmy = "MoveArmy4",
-            BuildArmy = "BuildArmy4",
-            Power = "Power4"
-        });
 
 		players.Add (new PlayerData ());
     }
@@ -89,122 +63,91 @@ public class PlayerData {
     // Usage: if( PlayerData.players[i].left() )
     public bool left()
     {
-			if (Input.GetKeyDown (KeyCode.LeftArrow))
+
+			if (playerNum == 1) 
+			if (Input.GetKeyDown (KeyCode.A))
 				return true;
-		//	return false;
-		//return (Input.GetAxis(AltHorizontal) < 0 || Input.GetAxis (Horizontal) < 0);
-		
 
 
-			if (Input.GetAxis(AltHorizontal) < 0 || Input.GetAxis (Horizontal) < -.4) {
-				if (leftPressedC > 0) {
-					leftPressedC -= Time.deltaTime;
-					return false;
-				}
-				leftPressedC = gracePeriodSeconds;
-				return true;
-			}
-			leftPressedC = -1.0f;
+			if (playerNum == 2) 
+				if (Input.GetKeyDown (KeyCode.LeftArrow))
+					return true;
+
 			return false;
-
-
-
 		
     }
 
     public bool right()
     {
-			if (Input.GetKeyDown (KeyCode.RightArrow))
-				return true;
-		//	return false;
-		//return (Input.GetAxis(AltHorizontal) > 0 || Input.GetAxis (Horizontal) > 0);
-		
-			if (Input.GetAxis(AltHorizontal) > 0 || Input.GetAxis(Horizontal) > .4) {
-				if (rightPressedC > 0) {
-					rightPressedC -= Time.deltaTime;
-					return false;
-				}
-				rightPressedC = gracePeriodSeconds;
-				return true;
-		}
-		rightPressedC = -1.0f;
-		return false;
+			if (playerNum == 1) 
+				if (Input.GetKeyDown (KeyCode.D))
+					return true;
+			
+			
+			if (playerNum == 2) 
+				if (Input.GetKeyDown (KeyCode.RightArrow))
+					return true;
+			
+			return false;;
 
     }
 
     public bool up()
     {
-			if (Input.GetKeyDown (KeyCode.UpArrow))
-				return true;
-
-		//return (Input.GetAxis(AltVertical) > 0 || Input.GetAxis (Vertical) > 0);
-		
-			if (Input.GetAxis(AltVertical) > 0 || Input.GetAxis(Vertical) > .4) {
-				if (upPressedC > 0) {
-					upPressedC -= Time.deltaTime;
-					return false;
-				}
-				upPressedC = gracePeriodSeconds;
-				return true;
-		}
-			upPressedC = -1.0f;
-		return false;
+			if (playerNum == 1) 
+				if (Input.GetKeyDown (KeyCode.W))
+					return true;
+			
+			
+			if (playerNum == 2) 
+				if (Input.GetKeyDown (KeyCode.UpArrow))
+					return true;
+			
+			return false;
 	
     }
 
     public bool down()
     {
-			if (Input.GetKeyDown (KeyCode.DownArrow))
-				return true;
-		//	return false;
-		//return (Input.GetAxis(AltVertical) < 0 || Input.GetAxis (Vertical) < 0);
-		
-		if (Input.GetAxis(AltVertical) < 0 || Input.GetAxis(Vertical) < -.4) {
-				if (downPressedC > 0) {
-					downPressedC -= Time.deltaTime;
-					return false;
-				}
-				downPressedC = gracePeriodSeconds;
-				return true;
-		}
-		downPressedC = -1.0f;
-		return false;
+			if (playerNum == 1) 
+				if (Input.GetKeyDown (KeyCode.S))
+					return true;
+			
+			
+			if (playerNum == 2) 
+				if (Input.GetKeyDown (KeyCode.DownArrow))
+					return true;
+			
+			return false;
 		
     }
 
     public bool move()
     {
-			if (Input.GetKeyDown (KeyCode.W))
-				return true;
-
-			if (Input.GetButton(MoveArmy)) {
-			if (movePressedC > 0) {
-				movePressedC -= Time.deltaTime;
-				return false;
-			}
-			movePressedC = gracePeriodSeconds;
-			return true;
-		}
-		movePressedC = -1.0f;
-		return false;
+			if (playerNum == 1) 
+				if (Input.GetKeyDown (KeyCode.F))
+					return true;
+			
+			
+			if (playerNum == 2) 
+				if (Input.GetKeyDown (KeyCode.N))
+					return true;
+			
+			return false;
     }
 
     public bool build()
     {
-			if (Input.GetKeyDown (KeyCode.Q))
-								return true;
+			if (playerNum == 1) 
+				if (Input.GetKeyDown (KeyCode.G))
+					return true;
+			
+		
+			if (playerNum == 2) 
+				if (Input.GetKeyDown (KeyCode.M))
+					return true;
 
-
-		if (Input.GetButton(BuildArmy)) {
-			if (buildPressedC > 0) {
-				buildPressedC -= Time.deltaTime;
-				return false;
-			}
-			buildPressedC = gracePeriodSeconds;
-			return true;
-		}
-		buildPressedC = -1.0f;
-		return false;
+			return false;
  
     }
 
@@ -266,6 +209,9 @@ public class PlayerData {
 	private float abilityPressedC = 0;
 
 	private float gracePeriodSeconds = .17f;
+
+	int playerNum;
+
 
 
     }
