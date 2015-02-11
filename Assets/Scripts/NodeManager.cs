@@ -15,9 +15,9 @@ public class NodeManager : MonoBehaviour {
 	*/
 
 	private float nodeSpread			=10f; 		// Total range of the map
-	private int tryCount				=5000;		// Number of nodes to try to make. May vary from actual nodes 
-	private float minTolerance			=1.5f;		// Minimum distance allowable for a node connection
-	private float maxTolerance			=5.4f;		// Maximum distance allowable for a node connection
+	private int tryCount				=20000;		// Number of nodes to try to make. May vary from actual nodes 
+	private float minTolerance			=2.9f;		// Minimum distance allowable for a node connection
+	private float maxTolerance			=5.1f;		// Maximum distance allowable for a node connection
 	private int maxNeighbors			=3;			// maximum number of neighbors
 	private float minimumNodeProximity = 3f;	
 
